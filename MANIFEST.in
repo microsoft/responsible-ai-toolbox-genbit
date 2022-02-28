@@ -1,0 +1,4 @@
+include requirements.txt
+include genbit/gendered-word-lists/*/female.txt
+include genbit/gendered-word-lists/*/male.txt
+include genbit/gendered-word-lists/*/non-binary.txt

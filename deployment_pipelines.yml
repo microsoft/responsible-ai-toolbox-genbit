@@ -1,0 +1,41 @@
+# Python package publishing pipeline
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - genbit/version.py
+
+variables:
+  tags: production, multiphased
+
+jobs:
+- job: create_and_publish_package
+  pool:
+    vmImage: 'windows-latest'
+  steps:
+  - script: |
+      python -m pip install --upgrade pip
+      python -m pip install wheel twine
+    displayName: 'Install dependencies'
+  - task: TwineAuthenticate@1
+    inputs:
+      artifactFeed: 'GSX/GenderBias'
+  - script: |
+      python -m setup sdist bdist_wheel
+    displayName: 'create package'
+  - script: |
+      python -m pip install genbit -f dist/
+    displayName: 'install created package'
+  - script: |
+      rm -r genbit
+    displayName: 'remove source code'
+  - script: |
+      python -m unittest
+    displayName: 'run tests on installed package'
+  - script: |
+      python -m twine upload -r GenderBias --config-file $(PYPIRC_PATH) dist/*.tar.gz
+    displayName: 'upload package'
+  displayName: 'Create and publish package'
+
