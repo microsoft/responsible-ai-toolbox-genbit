@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 """Main API for gender bias metrics, this API has two methods, add_data and get_metrics
 that connect with a metrics_calculation object to perform the gender bias calculations
 """

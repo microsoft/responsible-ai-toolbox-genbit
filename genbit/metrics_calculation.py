@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 """The main calculation class for the gender bias measure.
 The co-occurrence matrix is updated to reflect the corpus that is evaluated.
 As a second part of the analysis, all measures are calculated based on this co-occurrence matrix.

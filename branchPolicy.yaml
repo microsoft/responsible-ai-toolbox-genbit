@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 reviewerCountPolicy:
   minimumApproverCount: 1
   creatorVoteCounts: false

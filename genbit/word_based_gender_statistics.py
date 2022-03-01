@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 """Word Based Gender statistics class that can be leveraged to store corpus statistics
 """
 from dataclasses import dataclass, asdict

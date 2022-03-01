@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
+
 """Tokenization for the gender bias measure. All sentences are concatenated to retain
 contextual information present in the corpus"""
 
