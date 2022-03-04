@@ -1,12 +1,16 @@
 # GenBit: Gender Bias in Text Tool
 
-The main goal of the Gender Bias Tool (GenBiT) is to analyze corpora and compute metrics that give insights into the gender bias present in a corpus. The computations in this tool are based primarily on ideas from Shikha Bordia and Samuel R. Bowman, "[Identifying and reducing gender bias in word-level language models](https://arxiv.org/abs/1904.03035)" in the NAACL 2019 Student Research Workshop.
+The main goal of the Gender Bias Tool (GenBiT) is to analyze corpora and compute metrics that give insights into the gender bias present in a corpus. The computations in this tool are based primarily on ideas from Shikha Bordia and Samuel R. Bowman, "[Identifying and reducing gender bias in word-level language models](https://arxiv.org/abs/1904.03035)" in the NAACL 2019 Student Research Workshop. 
+
+GenBit is a tool that helps determine if gender is uniformly distributed across data by measuring the strength of association between a pre-defined list of gender definition words and other words in the corpus via co-occurrence statistics. The key metric it produces (the genbit_score) gives an estimate of the strength of association, on average, of any word in the corpus with a male or female gender definition word. The metrics that it provides can be used to identify gender bias in a data set to enable the production and use of more balanced datasets for training, tuning and evaluating machine learning (ML) models. It can also be used as a stanadlone corpus analysis tool.
+
+GenBit supports 5 languages: English, German, Spanish, French, Italian and Russian. For English it provides metrics for both binary and non-binary gender bias; for the remaining four languages non-binary gender bias is currently not supported. To deal with the challenges of grammatical gender in non-English languages, it leverages [stanza lemmatizers](https://stanfordnlp.github.io/stanza/lemma.html). It also uses the NLTK tokenization libraries. The full list of requirements are listed in [requirements.txt](requirements.txt)
 
 ## Installation
+---
 
 The code can be cloned or seen from here: [GenBiT source code](https://github.com/microsoft/responsibleaitoolbox-genbit)
 The package is currently supported for local use on Windows and Linux and can be deployed as part of an azure function.
-If your scenario is not listed here, please reach out to the Global AI team to discuss potential support for your current environment.
 
 #### Authentication
 
@@ -20,30 +24,13 @@ As mentioned before, the tested and supported environment for the GenBit python 
 - Local usage on Linux (Tested on Ubuntu 18.04 and Debian Buster 10)
 - As part of Azure functions installed using a [remote build](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-python#remote-build-with-extra-index-url).
 
-#### Installing the GenBiT python package with pip (Windows)
+#### Installing the GenBiT python package with pip
 
-1. (optional) Create a virtual environment: `py -m venv environment-name`
-2. Install the Azure artifacts keyring package: `pip install artifacts-keyring`
-3. Install GenbiT (make sure you have the right authentication token from [here](https://office.visualstudio.com/_usersSettings/tokens) or validate your device): `pip install genbit --index-url https://office.pkgs.visualstudio.com/GSX/_packaging/GenderBias/pypi/simple/`
-4. To verify whether this works open a python shell (`py`) and type `from genbit.genbit_metrics import GenBitMetrics`. For usage information, type: `help(genbit)`.
+1. Install GenbiT (make sure you have the right authentication token from [here](https://office.visualstudio.com/_usersSettings/tokens) or validate your device): `pip install genbit`
+2. To verify whether this works open a python shell and type `from genbit.genbit_metrics import GenBitMetrics`. For usage information, type: `help(genbit)`.
 
-#### Installing the GenBiT python package with pip (Linux - Ubuntu 18.04)
-
-1. Install [pip for python3](https://linuxize.com/post/how-to-install-pip-on-ubuntu-18.04/)
-2. Install virtualenv (this is necessary to run the installation in python3, use: `sudo apt-get install python3-venv`) and Create a virtual environment using: `virtualenv -p \usr\bin\python3 genbit-env`
-3. Activate the virtual environment: `source genbit-env\bin\activate`.
-4. Install the Azure artifacts keyring package: `pip install artifacts-keyring`
-5. Install GenbiT (make sure you have the right authentication token from [here](https://office.visualstudio.com/_usersSettings/tokens) or validate your device): `pip install genbit --index-url https://office.pkgs.visualstudio.com/GSX/_packaging/GenderBias/pypi/simple/`
-6. To verify whether this works open a python shell (`py`) and type `genbit.genbit_metrics import GenBitMetrics`. For usage information, type: `help(genbit)`.
-
-#### Installing the GenBiT python package with pip (Linux - Debian Buster 10)
-
-1. Install [pip for python3](https://linuxize.com/post/how-to-install-pip-on-debian-10/). (these commands are the same for Ubuntu and Debian)
-2. Install the Azure artifacts keyring package: `pip3 install artifacts-keyring`
-3. Install GenbiT (make sure you have the right authentication token from [here](https://office.visualstudio.com/_usersSettings/tokens) or validate your device): `pip3 install genbit --index-url https://office.pkgs.visualstudio.com/GSX/_packaging/GenderBias/pypi/simple/`
-4. Verify the installation using ‘python3’ [enter] `genbit.genbit_metrics import GenBitMetrics`.
-
-# Usage
+## Usage
+---
 
 To use GenBiT, it can be imported with:
 
@@ -72,13 +59,15 @@ To generate the gender bias metrics, we run `get_metrics` by setting `output_sta
 metrics = genbit_metrics_object.get_metrics(output_statistics=True, output_word_list=True)
 ```
 
+
 ## Metrics
+---
 
 GenBit computes a number of metrics, which are functions of word co-occurrences with predefined "gendered" words. These gendered words are divided into "female" words and "male" words. Female words contains items like "her" and "waitress" and male words contains items like "he" and "actor". The main calculation is computing co-occurrences between words `w` in your provided text, and words `f` from the female list and words `m` from the male list. In all that follows, `c[w,F]` (respectively, `c[w,M]`) denotes the frequency that word `w` co-occurs with a word on the female (respectively, male) lists. These are naturally interpretable as probabilities by normalizing: `p(w|F) = c[w,F] / c[.,F]` where `c[.,F]` is the sum over all `w'` of `c[w',F]`.
 
 ### Overall Metrics
 
-These overall metrics will always be returned.
+These overall (dataset-level) metrics will always be returned.
 
 - **avg_bias_ratio**: The average of the bias ratio scores per token. Formally, this is the average over all words `w` of `log( c[w,M] / c[w,F] )`.
 - **avg_bias_conditional**: The average of the bias conditional ratios per token. Similarly, this is the average over all words `w` of `log( p(w|M) / p(w|F) )`.
@@ -123,11 +112,12 @@ By Token:
 - **bias_conditional_ratio**: log( male_cond_prob/female_cond_prob ) the more positive the value, the more biased the word is towards being associated with male gendered word, the more negative the value the more biased the word is towards being associated with female gendered. Each value is `log( p(w|M) / p(w|F) )`. A value of zero means that the probability of this word co-occurring with words in the female list is equal to the probability of co-occurring with words in the male list (positive indicates more likely co-occurrence with male words; negative indicates more likely co-occurrence with female words).
 - **non_binary_bias_conditional_ratio**: log( (male_cond_prob+female_cond_prob) / non_binary_cond_prob ) the more positive the value, the more biased the word is towards being associated with binary gendered words; the more negative the value the more biased the word is towards being associated with a non-binary gendered word. A value of zero means the word has no gender bias associated with it.
 
-### Metric Scores, Benchmarking and Analysis
+## Metric Scores, Benchmarking and Interpretation
+---
 
 A detailed benchmarking was conducted to evaluate Genbit's performance across different samples and bias condiction in the corpora/datasets.
 
-The score interpretation depends on two key factor,
+The score interpretation depends on two key factors,
 
 a) The percentage of male or female gendered definition words
 
@@ -147,11 +137,21 @@ A detailed benchmarking is conducted to study the correlation of score ranges ac
 | FR | 0.50-1.3+ | >200 Samples | > 0.60 |
 | RU | 0.80-2.3+ | >400 Samples | > 1.10+ |
 
-**Note**: The score ranges are derived from certain type of datasets and may vary with datasets. The bias indicator percentage can aid in understanding the degree of biased a dataset can be. A genbit score of greater than the value provided in the last column indicates observable gender bias in the data set that may impact any resulting model trained on the dataset negatively (we would dub this 'moderate' gender bias). The higher this value the great the gender bias in the dataset. It is recommended as a best practive to use both the **genbit_score** as well as observe the values given for **percentage_of_male/female/non-binary_gender_definition_words** to provide some indication of the reliability of the **genbit_score**. In a 'naturally' distributed dataset you would expect that the percentage values for the male/female/non-binary gender definition words not to be overly skewed e.g. if the value observed was 10% male_gender_definition_words, 90% female_gender_definition_words, 0% non-binary_gender_definition_words this would potentially indicate quality conerns with the dataset as such a extreme skew is unlikely (and definitely undesirable) in a dataset.
+**Note**: The score ranges are derived from certain type of datasets and may vary with datasets. The bias indicator percentage can aid in understanding the degree of biased a dataset can be. A genbit score of greater than the value provided in the last column indicates observable gender bias in the data set that may impact any resulting model trained on the dataset negatively (we would dub this 'moderate' gender bias). The higher this value the great the gender bias in the dataset. It is recommended as a best practive to use both the **genbit_score** as well as observe the values given for **percentage_of_male/female/non-binary_gender_definition_words** to provide some indication of the reliability of the **genbit_score**. In a 'naturally' distributed dataset you would expect that the percentage values for the male/female/non-binary gender definition words not to be overly skewed e.g. if the value observed was 10% male_gender_definition_words, 90% female_gender_definition_words, 0% non-binary_gender_definition_words this would potentially indicate quality conerns with the dataset as such a extreme skew is unlikely (and definitely undesirable) in a dataset. 
+
+
+
+## Useful Links
+---
+
++ [Get started](notebooks/quickstart_sample_notebook.ipynb) using a sample Jupyter notebook.
++ [Lexicon Guidelines](LEXICONGUIDELINES.md) information about how the gender definition lexicons were created. These can be used for creating lexicons to support new languages.
++ [Identifying and Reducing Gender Bias in Word-Level Language Models](https://arxiv.org/pdf/1904.03035.pdf): Bordia and Bowman paper that describes the approach that GenBit is based on.
++ [Windogender](https://github.com/rudinger/winogender-schemas) Winogender data set; we use samples from these dataset as part of the GenBit tests and in our sample Jupyter notebook.
 
 
 ## Contributing
-
+---
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
 the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
@@ -165,9 +165,14 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 ## Trademarks
+---
 
 This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
 trademarks or logos is subject to and must follow 
 [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.
+
+## Authors and acknowledgment
+---
+The original GenBit tool was authored by (listed in alphabetical order) Declan Groves, Chantal Olieman, David Riff, Kinshuk Sengupta, Eshwar Stalin.
