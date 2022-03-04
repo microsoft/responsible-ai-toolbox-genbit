@@ -7,7 +7,6 @@ GenBit is a tool that helps determine if gender is uniformly distributed across 
 GenBit supports 5 languages: English, German, Spanish, French, Italian and Russian. For English it provides metrics for both binary and non-binary gender bias; for the remaining four languages non-binary gender bias is currently not supported. To deal with the challenges of grammatical gender in non-English languages, it leverages [stanza lemmatizers](https://stanfordnlp.github.io/stanza/lemma.html). It also uses the NLTK tokenization libraries. The full list of requirements are listed in [requirements.txt](requirements.txt)
 
 ## Installation
----
 
 The code can be cloned or seen from here: [GenBiT source code](https://github.com/microsoft/responsibleaitoolbox-genbit)
 The package is currently supported for local use on Windows and Linux and can be deployed as part of an azure function.
@@ -30,7 +29,6 @@ As mentioned before, the tested and supported environment for the GenBit python 
 2. To verify whether this works open a python shell and type `from genbit.genbit_metrics import GenBitMetrics`. For usage information, type: `help(genbit)`.
 
 ## Usage
----
 
 To use GenBiT, it can be imported with:
 
@@ -61,7 +59,6 @@ metrics = genbit_metrics_object.get_metrics(output_statistics=True, output_word_
 
 
 ## Metrics
----
 
 GenBit computes a number of metrics, which are functions of word co-occurrences with predefined "gendered" words. These gendered words are divided into "female" words and "male" words. Female words contains items like "her" and "waitress" and male words contains items like "he" and "actor". The main calculation is computing co-occurrences between words `w` in your provided text, and words `f` from the female list and words `m` from the male list. In all that follows, `c[w,F]` (respectively, `c[w,M]`) denotes the frequency that word `w` co-occurs with a word on the female (respectively, male) lists. These are naturally interpretable as probabilities by normalizing: `p(w|F) = c[w,F] / c[.,F]` where `c[.,F]` is the sum over all `w'` of `c[w',F]`.
 
@@ -113,7 +110,6 @@ By Token:
 - **non_binary_bias_conditional_ratio**: log( (male_cond_prob+female_cond_prob) / non_binary_cond_prob ) the more positive the value, the more biased the word is towards being associated with binary gendered words; the more negative the value the more biased the word is towards being associated with a non-binary gendered word. A value of zero means the word has no gender bias associated with it.
 
 ## Metric Scores, Benchmarking and Interpretation
----
 
 A detailed benchmarking was conducted to evaluate Genbit's performance across different samples and bias condiction in the corpora/datasets.
 
@@ -139,10 +135,7 @@ A detailed benchmarking is conducted to study the correlation of score ranges ac
 
 **Note**: The score ranges are derived from certain type of datasets and may vary with datasets. The bias indicator percentage can aid in understanding the degree of biased a dataset can be. A genbit score of greater than the value provided in the last column indicates observable gender bias in the data set that may impact any resulting model trained on the dataset negatively (we would dub this 'moderate' gender bias). The higher this value the great the gender bias in the dataset. It is recommended as a best practive to use both the **genbit_score** as well as observe the values given for **percentage_of_male/female/non-binary_gender_definition_words** to provide some indication of the reliability of the **genbit_score**. In a 'naturally' distributed dataset you would expect that the percentage values for the male/female/non-binary gender definition words not to be overly skewed e.g. if the value observed was 10% male_gender_definition_words, 90% female_gender_definition_words, 0% non-binary_gender_definition_words this would potentially indicate quality conerns with the dataset as such a extreme skew is unlikely (and definitely undesirable) in a dataset. 
 
-
-
 ## Useful Links
----
 
 + [Get started](notebooks/quickstart_sample_notebook.ipynb) using a sample Jupyter notebook.
 + [Lexicon Guidelines](LEXICONGUIDELINES.md) information about how the gender definition lexicons were created. These can be used for creating lexicons to support new languages.
@@ -151,7 +144,7 @@ A detailed benchmarking is conducted to study the correlation of score ranges ac
 
 
 ## Contributing
----
+
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
 the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
@@ -165,7 +158,6 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 ## Trademarks
----
 
 This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
 trademarks or logos is subject to and must follow 
@@ -174,5 +166,5 @@ Use of Microsoft trademarks or logos in modified versions of this project must n
 Any use of third-party trademarks or logos are subject to those third-party's policies.
 
 ## Authors and acknowledgment
----
+
 The original GenBit tool was authored by (listed in alphabetical order) Declan Groves, Chantal Olieman, David Riff, Kinshuk Sengupta, Eshwar Stalin.
