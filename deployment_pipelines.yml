@@ -35,7 +35,7 @@ jobs:
       python -m unittest
     displayName: 'run tests on installed package'
   - script: |
-      python -m twine upload -r GenderBias --config-file $(PYPIRC_PATH) dist/*.tar.gz
+      python -m twine upload -r GenderBias dist/*.tar.gz
     displayName: 'upload package'
   displayName: 'Create and publish package'
 
