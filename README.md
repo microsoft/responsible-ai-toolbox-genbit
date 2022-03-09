@@ -142,7 +142,7 @@ It is recommended as a best practive to use both the **genbit_score** as well as
 + [Get started](notebooks/quickstart_sample_notebook.ipynb) using a sample Jupyter notebook.
 + [Lexicon Guidelines](LEXICONGUIDELINES.md) information about how the gender definition lexicons were created. These can be used for creating lexicons to support new languages.
 + [Identifying and Reducing Gender Bias in Word-Level Language Models](https://arxiv.org/pdf/1904.03035.pdf): Bordia and Bowman paper that describes the approach that GenBit is based on.
-+ [Windogender](https://github.com/rudinger/winogender-schemas) Winogender data set; we use samples from these dataset as part of the GenBit tests and in our sample Jupyter notebook.
++ [Winogender](https://github.com/rudinger/winogender-schemas) Winogender data set; we use samples from these dataset as part of the GenBit tests and in our sample Jupyter notebook.
 
 
 ## Contributing
