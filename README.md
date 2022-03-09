@@ -11,9 +11,6 @@ GenBit supports 5 languages: English, German, Spanish, French, Italian and Russi
 The code can be cloned or seen from here: [GenBiT source code](https://github.com/microsoft/responsibleaitoolbox-genbit)
 The package is currently supported for local use on Windows and Linux and can be deployed as part of an azure function.
 
-#### Authentication
-
-If asked to provide your username and password when installing the pip package, please provide your ADO username and a [token genereated in ADO](https://office.visualstudio.com/_usersSettings/tokens) as password.
 
 #### Tested and Supported environments
 
