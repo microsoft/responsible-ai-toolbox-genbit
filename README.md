@@ -108,7 +108,7 @@ By Token:
 
 ## Metric Scores, Benchmarking and Interpretation
 
-A detailed benchmarking was conducted to evaluate Genbit's performance across different samples and bias condiction in the corpora/datasets.
+A detailed benchmarking was conducted to evaluate Genbit's performance across different samples and quantities of gender bias in the corpora/datasets.
 
 The score interpretation depends on two key factors,
 
@@ -132,7 +132,7 @@ A detailed benchmarking is conducted to study the correlation of score ranges ac
 
 The score ranges are derived from certain type of datasets and may vary with datasets. The bias indicator percentage can aid in understanding the degree of biased a dataset can be. A genbit score of greater than the value provided in the last column indicates observable gender bias in the data set that may impact any resulting model trained on the dataset negatively (we would dub this 'moderate' gender bias). The higher this value the great the gender bias in the dataset. 
 
-It is recommended as a best practive to use both the **genbit_score** as well as observe the values given for **percentage_of_male/female/non-binary_gender_definition_words** to provide some indication of the reliability of the **genbit_score**. In a 'naturally' distributed dataset you would expect that the percentage values for the male/female/non-binary gender definition words not to be overly skewed e.g. if the value observed was 10% male_gender_definition_words, 90% female_gender_definition_words, 0% non-binary_gender_definition_words this would potentially indicate quality conerns with the dataset as such a extreme skew is unlikely (and definitely undesirable) in a dataset. 
+It is recommended as a best practice to use both the **genbit_score** as well as observe the values given for **percentage_of_male/female/non-binary_gender_definition_words** to provide some indication of the reliability of the **genbit_score**. In a 'naturally' distributed dataset you would expect that the percentage values for the male/female/non-binary gender definition words not to be overly skewed e.g. if the value observed was 10% male_gender_definition_words, 90% female_gender_definition_words, 0% non-binary_gender_definition_words this would potentially indicate quality concerns with the dataset as such a extreme skew is unlikely (and definitely undesirable) in a dataset. 
 
 ## Useful Links
 

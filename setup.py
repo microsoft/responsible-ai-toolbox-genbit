@@ -24,10 +24,10 @@ setup = setup(
     packages=["genbit", "genbit.gendered-word-lists", "genbit.tests"],
     include_package_data=True,
     package_dir={'genbit.gendered-word-lists': os.path.join('genbit', 'gendered-word-lists'), 'genbit.tests': 'tests'},
-    license='internal-use-only',
-    url=' https://aka.ms/genbit',
+    license='MIT License',
+    url='https://github.com/microsoft/responsibleaitoolbox-genbit',
     install_requires=get_requirements(),
-    author="Global AI Experiences, Microsoft",
-    author_email='gaixp-dev@microsoft.com',
-    long_description="Main goal of the Gender Bias Tool (GenBiT) is to analyze corpora and compute metrics that give insights into the gender bias present in a corpus.\n \nFor more information please visit aka.ms/genbit. "
+    author="Microsoft",
+    author_email='raiwidgets-maintain@microsoft.com',
+    long_description="Main goal of the Gender Bias Tool (GenBiT) is to analyze corpora and compute metrics that give insights into the gender bias present in a corpus.\n \nFor more information please visithttps://github.com/microsoft/responsibleaitoolbox-genbit. "
 )

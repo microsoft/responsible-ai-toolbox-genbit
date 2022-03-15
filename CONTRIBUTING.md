@@ -28,7 +28,7 @@ python -m unittest
 Make sure that there are no pylint issues by running `pylint genbit`
 
 ### Adding 3rd party python package dependencies
-When adding a new 3rd party dependency it is important to make sure that the licenses of these packages are compatable with the MIT License and adhere to the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). The easiest way to do this is to add the package and version to [requirements.txt](requirements.txt). By doing this, they will be included in the azure-pipeline build. You can then go to the [Component Governance section in ADO](https://office.visualstudio.com/GSX/_componentGovernance/GenderBiasTool) to validate whether new packages have triggerd any alerts, if so, please review these alerts. 
+When adding a new 3rd party dependency it is important to make sure that the licenses of these packages are compatible with the MIT License and adhere to the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). The easiest way to do this is to add the package and version to [requirements.txt](requirements.txt). By doing this, they will be included in the azure-pipeline build. You can then go to the [Component Governance section in ADO](https://office.visualstudio.com/GSX/_componentGovernance/GenderBiasTool) to validate whether new packages have triggered any alerts, if so, please review these alerts. 
 
 ## Sharing GenBiT
 
