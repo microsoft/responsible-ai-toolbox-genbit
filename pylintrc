@@ -1,0 +1,20 @@
+[MASTER]
+ignore-patterns=test_*
+reports=no
+
+[MESSAGES CONTROL]
+disable=locally-disabled,fixme,cyclic-import,too-many-arguments,duplicate-code,import-self,unnecessary-pass,missing-function-docstring,dangerous-default-value,too-many-statements,protected-access,use-dict-literal,use-list-literal
+
+[FORMAT]
+max-line-length=120
+
+[DESIGN]
+# Maximum number of locals for function / method body
+max-locals=50
+# Maximum number of branch for function / method body
+max-branches=50
+# Maximum number of instance attributes
+max-attributes=50
+
+[SIMILARITIES]
+min-similarity-lines=10

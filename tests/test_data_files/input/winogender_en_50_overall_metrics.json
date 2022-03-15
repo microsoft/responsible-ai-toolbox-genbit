@@ -1,0 +1,26 @@
+{
+  "DataSet": "winogender-schemas-master",
+  "Freq_cutoff": 23.543112000000008,
+  "Num_words_considered": 73,
+  "Freq_of_male_gendered_words": 592,
+  "Freq_of_female_gendered_words": 244,
+  "Percentage_of_female_gendered_words": 0.291866028708134,
+  "Percentage_of_male_gendered_words": 0.708133971291866,
+  "JSD": 0.005559924571846245,
+  "Avg_bias_ratio": 0.8826290307923338,
+  "Avg_bias_conditional": 0.4330195577582524,
+  "Avg_bias_ratio_absolute": 0.8826290307923338,
+  "Avg_bias_conditional_absolute": 0.44533762551261086,
+  "Std_dev_bias_ratio": 0.1790225045866468,
+  "Std_dev_bias_conditional": 0.1790225045866468,
+  "bias_percentage": 160,
+  "language": "en",
+  "context_window": 5,
+  "distance_weight": 0.95,
+  "percentile_cutoff": 80,
+  "tokenizer": "stanza",
+  "matched_tokens": {
+    "male_tokens": "['he', 'his', 'him']",
+    "female_tokens": "['she', 'her']"
+  }
+}

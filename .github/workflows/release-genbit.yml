@@ -1,0 +1,63 @@
+name: Release genbit to PyPI
+
+# trigger manually only ("collaborator" or more permissions required)
+on:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: "Test or Prod PyPI?"
+        required: true
+        default: "Test"
+
+jobs:
+  release-genbit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: fail if Test nor Prod
+        if: ${{ ! (github.event.inputs.type == 'Test' || github.event.inputs.type == 'Prod') }}
+        run: |
+          echo "Only Test or Prod can be used."
+          exit 1
+      # build wheel
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      - name: update and upgrade pip, setuptools, wheel, and twine
+        run: |
+          python -m pip install --upgrade pip
+          pip install --upgrade setuptools wheel twine
+
+      - name: build wheel for genbit
+        run: python -m setup sdist bdist_wheel
+
+      # run tests before publishing to PyPI
+
+      - name: install genbit wheel locally
+        run: python -m pip install genbit -f dist/
+
+      - name: remove local genbit
+        run: rm -r genbit
+
+      - name: run genbit tests
+        run: python -m unittest
+
+      # publish to PyPI
+      - name: Publish genbit package to Test PyPI
+        if: ${{ github.event.inputs.type == 'Test' }}
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          user: __token__
+          password: ${{ secrets.TEST_PYPI_API_TOKEN_GENBIT }}
+          repository_url: https://test.pypi.org/legacy/
+          packages_dir: dist/
+      - name: Publish genbit package to PyPI
+        if: ${{ github.event.inputs.type == 'Prod' }}
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN_GENBIT }}
+          packages_dir: dist/
