@@ -1,6 +1,6 @@
 # GenBit: Gender Bias in Text Tool
 
-The main goal of the Gender Bias Tool (GenBiT) is to analyze corpora and compute metrics that give insights into the gender bias present in a corpus. The computations in this tool are based primarily on ideas from Shikha Bordia and Samuel R. Bowman, "[Identifying and reducing gender bias in word-level language models](https://arxiv.org/abs/1904.03035)" in the NAACL 2019 Student Research Workshop. 
+The main goal of the Gender Bias Tool (**G**en**B**i**t**) is to analyze corpora and compute metrics that give insights into the gender bias present in a corpus. The computations in this tool are based primarily on ideas from Shikha Bordia and Samuel R. Bowman, "[Identifying and reducing gender bias in word-level language models](https://arxiv.org/abs/1904.03035)" in the NAACL 2019 Student Research Workshop. 
 
 GenBit is a tool that helps determine if gender is uniformly distributed across data by measuring the strength of association between a pre-defined list of gender definition words and other words in the corpus via co-occurrence statistics. The key metric it produces (the genbit_score) gives an estimate of the strength of association, on average, of any word in the corpus with a male or female gender definition word. The metrics that it provides can be used to identify gender bias in a data set to enable the production and use of more balanced datasets for training, tuning and evaluating machine learning (ML) models. It can also be used as a stanadlone corpus analysis tool.
 
@@ -8,7 +8,7 @@ GenBit supports 5 languages: English, German, Spanish, French, Italian and Russi
 
 ## Installation
 
-The code can be cloned or seen from here: [GenBiT source code](https://github.com/microsoft/responsibleaitoolbox-genbit)
+The code can be cloned or seen from here: [GenBit source code](https://github.com/microsoft/responsibleaitoolbox-genbit)
 The package is currently supported for local use on Windows and Linux and can be deployed as part of an azure function.
 
 
@@ -22,22 +22,22 @@ As mentioned before, the tested and supported environment for the GenBit python 
 
 #### Installing the GenBiT python package with pip
 
-1. Install GenbiT (make sure you have the right authentication token from [here](https://office.visualstudio.com/_usersSettings/tokens) or validate your device): `pip install genbit`
+1. Install GenBit (make sure you have the right authentication token from [here](https://office.visualstudio.com/_usersSettings/tokens) or validate your device): `pip install genbit`
 2. To verify whether this works open a python shell and type `from genbit.genbit_metrics import GenBitMetrics`. For usage information, type: `help(genbit)`.
 
 ## Usage
 
-To use GenBiT, it can be imported with:
+To use GenBit, it can be imported with:
 
 `from genbit.genbit_metrics import GenBitMetrics`
 
-Create a GenbiT object with the desired settings:
+Create a GenBit object with the desired settings:
 
 ```
 genbit_metrics_object = GenBitMetrics(language_code, context_window=5, distance_weight=0.95, percentile_cutoff=80)
 ```
 
-Lets say we want to use GenbiT with a test sentence, we can add the sentence to GenbiT:
+Lets say we want to use GenBit with a test sentence, we can add the sentence to GenBit:
 
 ```
 test_text = ["I think she does not like cats. I think he does not like cats.",​ "He is a dog person."]​
@@ -114,13 +114,13 @@ The score interpretation depends on two key factors,
 
 a) The percentage of male or female gendered definition words
 
-b) Average bias condition absolute score(Genbit Score)
+b) Average bias condition absolute score (genbit_score)
 
 It is observed that With the increase in the gendered definition word percentage the Genbit Score tends to surge, demonstrating the presence of gender bias.
 
 A detailed benchmarking is conducted to study the correlation of score ranges across different datasets and to examine how genderbias could influence the overall machine learning task using multilingual parallel datasets[Winogender-schema, WinoMT, Curated-WinoMT, IMDB, TedTalks and few others].
 
-**Table1: Genbit V2 Reference Score Range for biased datasets.**
+**Table1: GenBit V2 Reference Score Range for biased datasets.**
 | Language | Score Range | Data Size | Bias % Indicator<br>(moderate-high) |
 |:--------: |------------- |:------------: |:-----------------------------------: |
 | EN | 0.30-1.0+ | >400 Samples | > 0.30 |
@@ -166,4 +166,4 @@ Any use of third-party trademarks or logos are subject to those third-party's po
 
 ## Authors and acknowledgment
 
-The original GenBit tool was authored by (listed in alphabetical order) Declan Groves, Chantal Olieman, David Riff, Kinshuk Sengupta, Eshwar Stalin.
+The original GenBit tool was co-authored by (listed in alphabetical order) Declan Groves, Chantal Olieman, David Riff, Kinshuk Sengupta, Eshwar Stalin, Marion Zepf.
