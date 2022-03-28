@@ -166,4 +166,4 @@ Any use of third-party trademarks or logos are subject to those third-party's po
 
 ## Authors and acknowledgment
 
-The original GenBit tool was co-authored by (listed in alphabetical order) Declan Groves, Chantal Olieman, David Riff, Kinshuk Sengupta, Eshwar Stalin, Marion Zepf.
+The original GenBit tool was co-authored by (listed in alphabetical order) Declan Groves, Chantal Olieman, Kinshuk Sengupta, David Riff, Eshwar Stalin, Marion Zepf.
