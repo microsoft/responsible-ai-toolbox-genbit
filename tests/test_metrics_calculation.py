@@ -6,6 +6,7 @@ import os
 import json
 from parameterized import parameterized
 from genbit.metrics_calculation import MetricsCalculation
+from genbit.tokenizer import Tokenizer
 
 
 class AnalyzeSentencesTestCase(unittest.TestCase):
@@ -21,6 +22,7 @@ class AnalyzeSentencesTestCase(unittest.TestCase):
     context_window = 5
     distance_weight = 0.95
     percentile_cutoff = 80
+    tokenizer = Tokenizer(language_code)
 
     def setUp(self):
         self.metrics_calculation = MetricsCalculation(
@@ -28,6 +30,7 @@ class AnalyzeSentencesTestCase(unittest.TestCase):
             self.context_window,
             self.distance_weight,
             self.percentile_cutoff,
+            self.tokenizer,
             False)
 
     def testInit(self):
@@ -52,7 +55,8 @@ class AnalyzeSentencesTestCase(unittest.TestCase):
                 unsupported_language_code,
                 self.context_window,
                 self.distance_weight,
-                self.percentile_cutoff)
+                self.percentile_cutoff,
+                self.tokenizer)
 
     def testAnalyzeText(self):
         input_file = os.path.join(
@@ -122,7 +126,9 @@ class AnalyzeSentencesTestCase(unittest.TestCase):
 
         for metric, value in expected_overall_result.items():
             self.assertIn(metric, overall_metrics)
-            self.assertAlmostEqual(value, overall_metrics[metric])
+            msg = f'failed on input_parameters={input_parameters}, file={expected_results_path}, metric={metric}, value={value}, mine={overall_metrics[metric]}'
+            #print(msg)
+            self.assertAlmostEqual(value, overall_metrics[metric], msg=msg)
 
     def testCalculateWordBasedBiasStatisticsMetrics(self):
         input_file = os.path.join(
@@ -136,6 +142,10 @@ class AnalyzeSentencesTestCase(unittest.TestCase):
 
         expected_results_path = os.path.join(
             os.getcwd(), self.expected_word_based_results_path)
+
+#        with open(expected_results_path + ".tmp", "w", encoding="utf-8") as expected_statistics_results_file:
+#            json.dump(token_list, expected_statistics_results_file, indent=2)
+
         with open(expected_results_path, "r", encoding="utf-8") as expected_statistics_results_file:
             expected_statistics_result = json.load(
                 expected_statistics_results_file)

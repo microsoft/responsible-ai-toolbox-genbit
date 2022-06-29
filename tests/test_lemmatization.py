@@ -8,11 +8,13 @@ import json
 from genbit.lemmatizer import Lemmatizer
 from genbit.metrics_calculation import MetricsCalculation
 import time
+from genbit.tokenizer import Tokenizer
 
 
 class LemmatizerTestCaseTestCase(unittest.TestCase):
 
     language_code = "en"
+    tokenizer = Tokenizer(language_code)
  
     def testInit(self):
         lemmatizer = Lemmatizer(self.language_code)
@@ -29,7 +31,7 @@ class LemmatizerTestCaseTestCase(unittest.TestCase):
         self.assertEqual(lem.lemmatize_token("be"), "be")
 
     def test_cooccurrence_matrix(self):
-         metrics_calculation = MetricsCalculation(self.language_code, 5, 0.95, 80, False)
+         metrics_calculation = MetricsCalculation(self.language_code, 5, 0.95, 80, self.tokenizer, False)
          metrics_calculation.analyze_text(["he", "eats"])
          metrics_calculation.analyze_text(["he", "eating"])
          metrics_calculation.analyze_text(["he", "eat"])
