@@ -1,7 +1,7 @@
 {
-  "frequency_cutoff": 23.543112000000008,
+  "frequency_cutoff": 23.46667974999999,
   "num_words_considered": 73,
   "freq_of_female_gender_definition_words": 244,
   "freq_of_male_gender_definition_words": 592,
-  "jsd": 0.005559924571846245 
+  "jsd": 0.005553001848568932
 }

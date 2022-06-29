@@ -8,7 +8,6 @@ from parameterized import parameterized
 from genbit.metrics_calculation import MetricsCalculation
 from genbit.tokenizer import Tokenizer
 
-
 class AnalyzeSentencesTestCase(unittest.TestCase):
 
     input_sentences_path_tokenized = "tests/test_data_files/input/winogender_en_50_tokenized.tsv"
@@ -126,9 +125,7 @@ class AnalyzeSentencesTestCase(unittest.TestCase):
 
         for metric, value in expected_overall_result.items():
             self.assertIn(metric, overall_metrics)
-            msg = f'failed on input_parameters={input_parameters}, file={expected_results_path}, metric={metric}, value={value}, mine={overall_metrics[metric]}'
-            #print(msg)
-            self.assertAlmostEqual(value, overall_metrics[metric], msg=msg)
+            self.assertAlmostEqual(value, overall_metrics[metric])
 
     def testCalculateWordBasedBiasStatisticsMetrics(self):
         input_file = os.path.join(
@@ -142,9 +139,6 @@ class AnalyzeSentencesTestCase(unittest.TestCase):
 
         expected_results_path = os.path.join(
             os.getcwd(), self.expected_word_based_results_path)
-
-#        with open(expected_results_path + ".tmp", "w", encoding="utf-8") as expected_statistics_results_file:
-#            json.dump(token_list, expected_statistics_results_file, indent=2)
 
         with open(expected_results_path, "r", encoding="utf-8") as expected_statistics_results_file:
             expected_statistics_result = json.load(

@@ -15,7 +15,7 @@ class LemmatizerTestCaseTestCase(unittest.TestCase):
 
     language_code = "en"
     tokenizer = Tokenizer(language_code)
- 
+
     def testInit(self):
         lemmatizer = Lemmatizer(self.language_code)
         self.assertIsInstance(lemmatizer, Lemmatizer)

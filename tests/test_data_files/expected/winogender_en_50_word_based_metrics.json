@@ -4,7 +4,7 @@
     "female_count": 7.777774999999999,
     "male_count": 20.478093437499997,
     "bias_ratio": 0.9680853943955146,
-    "bias_conditional_ratio": 0.5184759213614334,
+    "bias_conditional_ratio": 0.5190658718769504,
     "female_conditional_prob": 0.01266738599348534,
     "male_conditional_prob": 0.02128699941528066,
     "binary_conditional_prob": 0.033954385408766004
