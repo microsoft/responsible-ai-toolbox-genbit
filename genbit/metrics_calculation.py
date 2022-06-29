@@ -8,6 +8,7 @@ As a second part of the analysis, all measures are calculated based on this co-o
 
 import math
 import os
+import re
 from typing import List
 import statistics
 import numpy as np
@@ -29,7 +30,7 @@ class MetricsCalculation:
     _UNSUPPORTED_LANGUAGE_ERROR = "The languages {0} is not supported, currently supported languages are:{1}"
 
     def __init__(self, language_code, context_window, distance_weight,
-                 percentile_cutoff, non_binary_gender_stats=True):
+                 percentile_cutoff, tokenizer, non_binary_gender_stats=True):
         if language_code not in self._supported_languages:
             raise ValueError(
                 self._UNSUPPORTED_LANGUAGE_ERROR.format(
@@ -39,6 +40,7 @@ class MetricsCalculation:
         self._context_window = context_window
         self._distance_weight = distance_weight
         self._percentile_cutoff = percentile_cutoff
+        self._tokenizer = tokenizer
         self._stopwords = stopwords.stopwords(language_code.lower())
         self._female_gendered_words = set()
         self._male_gendered_words = set()
@@ -57,16 +59,17 @@ class MetricsCalculation:
         self._non_binary_conditional_probs = None
         self._tokens_considered = None
         self._load_word_lists(language_code, non_binary_gender_stats)
+        self._multiword_expressions = self._initialize_multiword_expressions()
 
     def _load_word_lists(self, language_code: str, non_binary_gender_stats: bool):
         with open(os.path.join(self._gendered_word_list_location, language_code, "female.txt"), 'r',
                 encoding="utf-8") as female_word_lists:
             self._female_gendered_words = set(
-                word.strip() for word in female_word_lists.readlines())
+                self._form_mwe(word) for word in female_word_lists.readlines())
         with open(os.path.join(self._gendered_word_list_location, language_code, "male.txt"), 'r',
                 encoding="utf-8") as male_word_lists:
             self._male_gendered_words = set(
-                word.strip() for word in male_word_lists.readlines())
+                self._form_mwe(word) for word in male_word_lists.readlines())
         # non-binary word lists only exists for English
         non_binary_word_lists_path = os.path.join(
             self._gendered_word_list_location, language_code, "non-binary.txt")
@@ -74,12 +77,66 @@ class MetricsCalculation:
             with open(non_binary_word_lists_path, 'r',
                     encoding="utf-8") as non_binary_word_lists:
                 self._non_binary_gendered_words = set(
-                    word.strip() for word in non_binary_word_lists.readlines())
+                    self._form_mwe(word) for word in non_binary_word_lists.readlines())
                 self._non_binary_gender_stats = True
+
+    def _form_mwe(self, w):
+        tokens = self._tokenizer.tokenize_data([w.strip()])
+        assert len(tokens) == 1, w
+        return '@@@'.join( tokens[0] )
+        #return re.sub('[\s]+', '@@@', w.strip())   # eg "trans man" becomes "trans@@@man"
+
+    def _initialize_multiword_expressions(self):
+        mwes = dict()  # trie of MWEs
+
+        def add_to_trie(mwe):
+            words = mwe.split('@@@')
+            trie = mwes
+            for i in range(len(words)):
+                if words[i] not in trie:
+                    trie[words[i]] = dict()
+                trie = trie[words[i]]
+                if i == len(words) - 1:
+                    trie[None] = mwe
+        
+        all_words = self._female_gendered_words.union( self._male_gendered_words )
+        if self._non_binary_gender_stats:
+            all_words = all_words.union( self._non_binary_gendered_words )
+        for w in all_words:
+            if '@@@' in w: # this is an mwe
+                add_to_trie(w)
+
+        return mwes
+
+    def _join_multiword_expressions(self, lowered_tokens : List[str]):
+        def lookup_trie(trie, tok, start_index):
+            longest = None, start_index
+            for j in range(start_index, len(tok)):
+                if tok[j] not in trie:
+                    return longest
+                # otherwise tok[j] is in the trie and we can continue
+                trie = trie[tok[j]]
+                if None in trie:
+                    longest = trie[None], j+1
+            return longest
+
+        mwe_tokens = []
+        i = 0
+        while i < len(lowered_tokens):
+            mwe, j = lookup_trie(self._multiword_expressions, lowered_tokens, i)
+            if mwe is None:
+                mwe_tokens.append( lowered_tokens[i] )
+                i += 1
+            else:
+                mwe_tokens.append( mwe )
+                assert j > i
+                i = j
+        return mwe_tokens
 
     def analyze_text(self, tokenized_text: List[str]):
         lowered_tokens = [token.lower() for token in tokenized_text]
-        tokenized_text = [token for token in lowered_tokens if (
+        mwe_tokens = self._join_multiword_expressions(lowered_tokens)
+        tokenized_text = [token for token in mwe_tokens if (
             token in self._male_gendered_words) or (
             token in self._female_gendered_words) or (
             token in self._non_binary_gendered_words) or not (

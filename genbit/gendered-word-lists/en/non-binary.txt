@@ -80,6 +80,7 @@ tri-gender
 boi
 bois
 gender-non-conforming
+gender non-conforming
 gender-variant
 gender-diverse
 gender-expansive
