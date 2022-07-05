@@ -81,49 +81,50 @@ class MetricsCalculation:
                 self._non_binary_gender_stats = True
 
     def _form_mwe(self, w):
-        tokens = self._tokenizer.tokenize_data([w.strip()])
-        assert len(tokens) == 1, w
-        return '@@@'.join( tokens[0] )
-        #return re.sub('[\s]+', '@@@', w.strip())   # eg "trans man" becomes "trans@@@man"
+        w = w.strip()
+        tokens = self._tokenizer.tokenize_data([w])
+        if len(tokens) == 0:
+            return w
+        return '@@@'.join( [t for tl in tokens for t in tl] )
+
+    def _add_to_trie(self, mwes, mwe):
+        words = mwe.split('@@@')
+        trie = mwes
+        for i in range(len(words)):
+            if words[i] not in trie:
+                trie[words[i]] = dict()
+            trie = trie[words[i]]
+            if i == len(words) - 1:
+                trie[None] = mwe
+
+    def _lookup_trie(self, trie, tok, start_index):
+        longest = None, start_index
+        for j in range(start_index, len(tok)):
+            if tok[j] not in trie:
+                return longest
+            # otherwise tok[j] is in the trie and we can continue
+            trie = trie[tok[j]]
+            if None in trie:
+                longest = trie[None], j+1
+        return longest
 
     def _initialize_multiword_expressions(self):
         mwes = dict()  # trie of MWEs
-
-        def add_to_trie(mwe):
-            words = mwe.split('@@@')
-            trie = mwes
-            for i in range(len(words)):
-                if words[i] not in trie:
-                    trie[words[i]] = dict()
-                trie = trie[words[i]]
-                if i == len(words) - 1:
-                    trie[None] = mwe
         
         all_words = self._female_gendered_words.union( self._male_gendered_words )
         if self._non_binary_gender_stats:
             all_words = all_words.union( self._non_binary_gendered_words )
         for w in all_words:
             if '@@@' in w: # this is an mwe
-                add_to_trie(w)
+                self._add_to_trie(mwes, w)
 
         return mwes
 
     def _join_multiword_expressions(self, lowered_tokens : List[str]):
-        def lookup_trie(trie, tok, start_index):
-            longest = None, start_index
-            for j in range(start_index, len(tok)):
-                if tok[j] not in trie:
-                    return longest
-                # otherwise tok[j] is in the trie and we can continue
-                trie = trie[tok[j]]
-                if None in trie:
-                    longest = trie[None], j+1
-            return longest
-
         mwe_tokens = []
         i = 0
         while i < len(lowered_tokens):
-            mwe, j = lookup_trie(self._multiword_expressions, lowered_tokens, i)
+            mwe, j = self._lookup_trie(self._multiword_expressions, lowered_tokens, i)
             if mwe is None:
                 mwe_tokens.append( lowered_tokens[i] )
                 i += 1

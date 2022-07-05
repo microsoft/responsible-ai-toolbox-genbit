@@ -8,6 +8,49 @@ from parameterized import parameterized
 from genbit.metrics_calculation import MetricsCalculation
 from genbit.tokenizer import Tokenizer
 
+class TrieTestCase(unittest.TestCase):
+    language_code = "en"
+    language_code = "en"
+    context_window = 5
+    distance_weight = 0.95
+    percentile_cutoff = 80
+    tokenizer = Tokenizer(language_code)
+
+    def setUp(self):
+        self.metrics_calculation = MetricsCalculation(
+            self.language_code,
+            self.context_window,
+            self.distance_weight,
+            self.percentile_cutoff,
+            self.tokenizer,
+            False)
+
+    def testInit(self):
+        self.assertIsInstance(self.metrics_calculation, MetricsCalculation)
+
+    def testTrie(self):
+        trie = dict()
+        self.metrics_calculation._add_to_trie(trie, 'a@@@b@@@c')
+        self.metrics_calculation._add_to_trie(trie, 'a@@@b')
+        self.metrics_calculation._add_to_trie(trie, 'a@@@b@@@d')
+        
+        self.assertIn('a', trie)
+        self.assertIn('b', trie['a'])
+        self.assertIn('c', trie['a']['b'])
+        self.assertIn('d', trie['a']['b'])
+        self.assertIn(None, trie['a']['b'])
+        self.assertIn(None, trie['a']['b']['c'])
+        self.assertIn(None, trie['a']['b']['d'])
+
+        result, index = self.metrics_calculation._lookup_trie(trie, ['a'], 0)
+        self.assertEqual(result, None)
+        result, index = self.metrics_calculation._lookup_trie(trie, ['a','b'], 0)
+        self.assertEqual(result, 'a@@@b')
+        result, index = self.metrics_calculation._lookup_trie(trie, ['a','b','d','a'], 0)
+        self.assertEqual(result, 'a@@@b@@@d')
+        self.assertEqual(index, 3)
+        
+
 class AnalyzeSentencesTestCase(unittest.TestCase):
 
     input_sentences_path_tokenized = "tests/test_data_files/input/winogender_en_50_tokenized.tsv"
