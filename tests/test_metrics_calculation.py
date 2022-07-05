@@ -68,6 +68,13 @@ class TrieTestCase(unittest.TestCase):
         self.assertIn('d', mwes['a']['b']['c'])
         self.assertIn(None, mwes['a']['b']['c']['d'])
 
+        self.metrics_calculation._multiword_expressions = mwes
+        self.assertEqual(
+            self.metrics_calculation._join_multiword_expressions('x a d c b'.split()),
+            'x a@@@d@@@c b'.split())
+        self.assertEqual(
+            self.metrics_calculation._join_multiword_expressions('x a c c b'.split()),
+            'x a c c b'.split())
 
 class AnalyzeSentencesTestCase(unittest.TestCase):
 
