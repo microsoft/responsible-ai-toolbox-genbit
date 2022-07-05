@@ -10,7 +10,6 @@ from genbit.tokenizer import Tokenizer
 
 class TrieTestCase(unittest.TestCase):
     language_code = "en"
-    language_code = "en"
     context_window = 5
     distance_weight = 0.95
     percentile_cutoff = 80
