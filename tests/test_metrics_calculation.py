@@ -49,7 +49,25 @@ class TrieTestCase(unittest.TestCase):
         result, index = self.metrics_calculation._lookup_trie(trie, ['a','b','d','a'], 0)
         self.assertEqual(result, 'a@@@b@@@d')
         self.assertEqual(index, 3)
-        
+
+    def testMWEs(self):
+        # re-initialize sets to empty so we can put some tricky test cases in
+        self.metrics_calculation._non_binary_gender_stats = False
+        self.metrics_calculation._male_gendered_words = set()        
+        self.metrics_calculation._female_gendered_words = set([
+            self.metrics_calculation._form_mwe(w)
+            for w in [' a-d c ', 'a b c-d', '\na b\t']            
+        ])
+        mwes = self.metrics_calculation._initialize_multiword_expressions()
+        self.assertIn('a', mwes)
+        self.assertIn('b', mwes['a'])
+        self.assertIn('d', mwes['a'])
+        self.assertIn('c', mwes['a']['d'])
+        self.assertIn(None, mwes['a']['d']['c'])
+        self.assertIn(None, mwes['a']['b'])
+        self.assertIn('d', mwes['a']['b']['c'])
+        self.assertIn(None, mwes['a']['b']['c']['d'])
+
 
 class AnalyzeSentencesTestCase(unittest.TestCase):
 

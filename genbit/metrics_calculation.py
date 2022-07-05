@@ -8,7 +8,6 @@ As a second part of the analysis, all measures are calculated based on this co-o
 
 import math
 import os
-import re
 from typing import List
 import statistics
 import numpy as np
@@ -80,24 +79,26 @@ class MetricsCalculation:
                     self._form_mwe(word) for word in non_binary_word_lists.readlines())
                 self._non_binary_gender_stats = True
 
-    def _form_mwe(self, w):
-        w = w.strip()
-        tokens = self._tokenizer.tokenize_data([w])
+    def _form_mwe(self, word):
+        word = word.strip()
+        tokens = self._tokenizer.tokenize_data([word])
         if len(tokens) == 0:
-            return w
+            return word
         return '@@@'.join( [t for tl in tokens for t in tl] )
 
-    def _add_to_trie(self, mwes, mwe):
+    @staticmethod
+    def _add_to_trie(mwes, mwe):
         words = mwe.split('@@@')
         trie = mwes
-        for i in range(len(words)):
-            if words[i] not in trie:
-                trie[words[i]] = dict()
-            trie = trie[words[i]]
+        for i, word in enumerate(words):
+            if word not in trie:
+                trie[word] = dict()
+            trie = trie[word]
             if i == len(words) - 1:
                 trie[None] = mwe
 
-    def _lookup_trie(self, trie, tok, start_index):
+    @staticmethod
+    def _lookup_trie(trie, tok, start_index):
         longest = None, start_index
         for j in range(start_index, len(tok)):
             if tok[j] not in trie:
@@ -110,14 +111,12 @@ class MetricsCalculation:
 
     def _initialize_multiword_expressions(self):
         mwes = dict()  # trie of MWEs
-        
         all_words = self._female_gendered_words.union( self._male_gendered_words )
         if self._non_binary_gender_stats:
             all_words = all_words.union( self._non_binary_gendered_words )
-        for w in all_words:
-            if '@@@' in w: # this is an mwe
-                self._add_to_trie(mwes, w)
-
+        for word in all_words:
+            if '@@@' in word: # this is an mwe
+                self._add_to_trie(mwes, word)
         return mwes
 
     def _join_multiword_expressions(self, lowered_tokens : List[str]):
