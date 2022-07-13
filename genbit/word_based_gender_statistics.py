@@ -13,14 +13,20 @@ class WordBasedGenderStatistics:
     female_count: float = 0.0
     male_count: float = 0.0
     non_binary_count: float = 0.0
+    trans_count: float = 0.0
+    cis_count: float = 0.0
     bias_ratio: float = 0.0
     bias_conditional_ratio: float = 0.0
     non_binary_bias_ratio: float = 0.0
     non_binary_bias_conditional_ratio: float = 0.0
+    cis_bias_ratio: float = 0.0
+    cis_bias_conditional_ratio: float = 0.0
     female_conditional_prob: float = 0.0
     male_conditional_prob: float = 0.0
     binary_conditional_prob: float = 0.0
     non_binary_conditional_prob: float = 0.0
+    trans_conditional_prob: float = 0.0
+    cis_conditional_prob: float = 0.0
 
     def get_return_dict(self, non_binary_gender_stats=True):
         return {key:value for key, value in asdict(self).items()

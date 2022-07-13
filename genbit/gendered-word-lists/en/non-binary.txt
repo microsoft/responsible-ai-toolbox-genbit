@@ -19,8 +19,6 @@ pangender
 pan-gender
 omnigender
 omni-gender
-androgynous
-androgyny
 gender-neutral
 androgyne
 androgynes

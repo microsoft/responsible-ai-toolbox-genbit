@@ -32,3 +32,4 @@ class TokenizerTestCase(unittest.TestCase):
         with open(expected_tokenized_path, "r", encoding="utf-8") as expected_tokenized_path:
             expected_tokenized_text = json.load(expected_tokenized_path)
         self.assertEqual(tokenized_text, expected_tokenized_text)
+

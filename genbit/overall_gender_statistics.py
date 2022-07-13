@@ -17,13 +17,21 @@ class OverallGenderStatistics:
     avg_non_binary_bias_conditional: float = 0.0
     avg_non_binary_bias_ratio_absolute: float = 0.0
     avg_non_binary_bias_conditional_absolute: float = 0.0
+    avg_trans_cis_bias_ratio: float = 0.0
+    avg_trans_cis_bias_conditional: float = 0.0
+    avg_trans_cis_bias_ratio_absolute: float = 0.0
+    avg_trans_cis_bias_conditional_absolute: float = 0.0
     std_dev_bias_ratio: float = 0.0
     std_dev_bias_conditional: float = 0.0
     std_dev_non_binary_bias_ratio: float = 0.0
     std_dev_non_binary_bias_conditional: float = 0.0
+    std_dev_trans_cis_bias_ratio: float = 0.0
+    std_dev_trans_cis_bias_conditional: float = 0.0
     percentage_of_female_gender_definition_words: float = 0.0
     percentage_of_male_gender_definition_words: float = 0.0
     percentage_of_non_binary_gender_definition_words: float = 0.0
+    percentage_of_cis_gender_definition_words: float = 0.0
+    percentage_of_trans_gender_definition_words: float = 0.0
 
     def get_return_dict(self, non_binary_gender_stats=True):
         overall_metrics = {}
