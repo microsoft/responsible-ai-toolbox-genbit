@@ -33,7 +33,7 @@ class OverallGenderStatistics:
     percentage_of_cis_gender_definition_words: float = 0.0
     percentage_of_trans_gender_definition_words: float = 0.0
 
-    def get_return_dict(self, non_binary_gender_stats=True):
+    def get_return_dict(self, non_binary_gender_stats=True, trans_cis_gender_stats=True):
         overall_metrics = {}
         overall_metrics["genbit_score"] = self.avg_bias_conditional_absolute
         overall_metrics["percentage_of_female_gender_definition_words"] = \
@@ -42,8 +42,13 @@ class OverallGenderStatistics:
             self.percentage_of_male_gender_definition_words
         overall_metrics["percentage_of_non_binary_gender_definition_words"] = \
             self.percentage_of_non_binary_gender_definition_words
+        overall_metrics["percentage_of_trans_gender_definition_words"] = \
+            self.percentage_of_trans_gender_definition_words
+        overall_metrics["percentage_of_cis_gender_definition_words"] = \
+            self.percentage_of_cis_gender_definition_words
         additional_metrics = {key:value for key, value in asdict(self).items()
                               if key not in overall_metrics and (
-                                  non_binary_gender_stats or not key.__contains__("non_binary"))}
+                                  non_binary_gender_stats or not key.__contains__("non_binary")) and (
+                                  trans_cis_gender_stats or not key.__contains__("trans_cis"))}
         overall_metrics["additional_metrics"] = additional_metrics
         return overall_metrics

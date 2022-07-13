@@ -125,6 +125,9 @@ class MetricsCalculation:
         all_words = self._female_gendered_words.union( self._male_gendered_words )
         if self._non_binary_gender_stats:
             all_words = all_words.union( self._non_binary_gendered_words )
+        if self._trans_cis_stats:
+            all_words = all_words.union( self._trans_gendered_words )
+            all_words = all_words.union( self._cis_gendered_words )
         for word in all_words:
             if '@@@' in word: # this is an mwe
                 self._add_to_trie(mwes, word)
@@ -321,36 +324,36 @@ class MetricsCalculation:
                 self._non_binary_bias_scores_ratio[token] = 0
                 self._non_binary_bias_scores_conditional[token] = 0
                 if metrics["non-binary"] > 0:
+                    # metrics["male"] + metrics["female"]  should be >= 2 since they're both smoothed by 1
                     self._non_binary_bias_scores_ratio[token] = math.log(
-                        (metrics["male"] + metrics["female"]) / metrics["non-binary"])
+                        (metrics["male"] + metrics["female"] - 1) / metrics["non-binary"])
                 self._non_binary_conditional_probs[token] = metrics["non-binary"] / (
                     self._gendered_word_counts["non-binary"] + len(self._cooccurrence_matrix))
                 if self._non_binary_conditional_probs[token] > 0:
-                    self._non_binary_bias_scores_conditional[token] = math.log(
-                        (self._female_conditional_probs[token] + self._male_conditional_probs[token]) \
-                            / self._non_binary_conditional_probs[token])
+                    binary_conditional_token = (metrics["female"] + metrics["male"] - 1) \
+                        / (self._gendered_word_counts["female"] + self._gendered_word_counts["male"] + len(self._cooccurrence_matrix))
+                    self._non_binary_bias_scores_conditional[token] = \
+                        math.log(binary_conditional_token / self._non_binary_conditional_probs[token])
 
                 # compute trans/cis gender metrics for the token
                 self._trans_cis_bias_scores_ratio[token] = 0
                 self._trans_cis_bias_scores_conditional[token] = 0
-                if metrics["non-binary"] + metrics["trans"] > 0:
+                if metrics["non-binary"] + metrics["trans"] > 1:
                     self._trans_cis_bias_scores_ratio[token] = math.log(
-                        (metrics["cis"]) /
-                        (metrics["non-binary"] + metrics["trans"]))
-                self._trans_conditional_probs[token] = (
-                    metrics["non-binary"] + metrics["trans"]) / (
-                        self._gendered_word_counts["non-binary"] + \
+                        metrics["cis"] /
+                          (metrics["non-binary"] + metrics["trans"] - 1))
+
+                self._trans_conditional_probs[token] = \
+                    (metrics["non-binary"] + metrics["trans"] - 1) / \
+                    (self._gendered_word_counts["non-binary"] + \
                         self._gendered_word_counts["trans"] + \
                         len(self._cooccurrence_matrix))
-                self._cis_conditional_probs[token] = (
-                    metrics["cis"]) / (
-                        self._gendered_word_counts["cis"] + \
-                        len(self._cooccurrence_matrix))
-                if self._non_binary_conditional_probs[token] + self._trans_conditional_probs[token] > 0:
+                self._cis_conditional_probs[token] = (metrics["cis"]) / \
+                        (self._gendered_word_counts["cis"] + \
+                         len(self._cooccurrence_matrix))
+                if self._trans_conditional_probs[token] > 0:
                     self._trans_cis_bias_scores_conditional[token] = math.log(
-                        (self._cis_conditional_probs[token]) / (
-                         (self._non_binary_conditional_probs[token] + \
-                             self._trans_conditional_probs[token])))
+                        self._cis_conditional_probs[token] / self._trans_conditional_probs[token])
 
                 # compute totals and the average is computed at the end of the loop
                 overall_metrics.avg_bias_ratio += self._bias_scores_ratio[token]
