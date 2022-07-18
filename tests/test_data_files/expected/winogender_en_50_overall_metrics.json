@@ -1,14 +1,1 @@
-{
-  "genbit_score": 0.44533762551261086,
-  "percentage_of_female_gender_definition_words": 0.291866028708134,
-  "percentage_of_male_gender_definition_words": 0.7081339712918661,
-  "percentage_of_non_binary_gender_definition_words": 0.0,
-  "additional_metrics": {
-    "avg_bias_ratio": 0.8826290307923338,
-    "avg_bias_conditional": 0.4330195577582524,
-    "avg_bias_ratio_absolute": 0.8826290307923338,
-    "avg_bias_conditional_absolute": 0.44533762551261086,
-    "std_dev_bias_ratio": 0.1790225045866468,
-    "std_dev_bias_conditional": 0.1790225045866468
-  }
-}
+{"genbit_score": 0.44533762551261086, "percentage_of_female_gender_definition_words": 0.291866028708134, "percentage_of_male_gender_definition_words": 0.7081339712918661, "percentage_of_non_binary_gender_definition_words": 0.0, "percentage_of_trans_gender_definition_words": 0.0, "percentage_of_cis_gender_definition_words": 1.0, "additional_metrics": {"avg_bias_ratio": 0.8826290307923338, "avg_bias_conditional": 0.4330195577582524, "avg_bias_ratio_absolute": 0.8826290307923338, "avg_bias_conditional_absolute": 0.44533762551261086, "avg_trans_cis_bias_ratio": 0.0, "avg_trans_cis_bias_conditional": -1.1834382018842289, "avg_trans_cis_bias_ratio_absolute": 0.0, "avg_trans_cis_bias_conditional_absolute": 1.1834382018842289, "std_dev_bias_ratio": 0, "std_dev_bias_conditional": 0, "std_dev_trans_cis_bias_ratio": 0, "std_dev_trans_cis_bias_conditional": 0}}

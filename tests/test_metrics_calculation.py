@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 import unittest
-import os
+import os, sys
 import json
 from parameterized import parameterized
 from genbit.metrics_calculation import MetricsCalculation
