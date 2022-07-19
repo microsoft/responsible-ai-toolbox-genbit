@@ -181,7 +181,8 @@ class MetricsCalculation:
             elif token in self._non_binary_gendered_words:
                 self._update_all_surrounding_words(
                     token_index, "non-binary", sentence_tokens)
-            elif token in self._trans_gendered_words:
+            
+            if token in self._trans_gendered_words:
                 self._update_all_surrounding_words(
                     token_index, "trans", sentence_tokens)
             elif token in self._cis_gendered_words:
@@ -266,13 +267,12 @@ class MetricsCalculation:
         for token, counts in self._cooccurrence_matrix.items():
             if token in self._female_gendered_words:
                 total_female_freq_count += counts["count"]
-                total_cis_freq_count += counts["count"]
             if token in self._male_gendered_words:
                 total_male_freq_count += counts["count"]
-                total_cis_freq_count += counts["count"]
             if token in self._non_binary_gendered_words:
                 total_non_binary_freq_count += counts["count"]
-                total_trans_freq_count += counts["count"]
+                if token not in self._trans_gendered_words: # avoid double counting
+                    total_trans_freq_count += counts["count"]
             if token in self._trans_gendered_words:
                 total_trans_freq_count += counts["count"]
             if token in self._cis_gendered_words:
@@ -422,6 +422,7 @@ class MetricsCalculation:
             self._gendered_word_counts["male"] / total_gender_definition_words
         overall_metrics.percentage_of_non_binary_gender_definition_words = \
             self._gendered_word_counts["non-binary"] / total_gender_definition_words
+
 
         total_trans_cis_definition_words = \
             max(1, self._gendered_word_counts["trans"] + \

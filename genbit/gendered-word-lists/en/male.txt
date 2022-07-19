@@ -43,6 +43,27 @@ cameramen
 chairman
 chairmen
 chap
+cis boy
+cis boys
+cisboy
+cis-boy
+cisboys
+cis-boys
+cisheteropatriarchy
+cishetero-patriarchy
+cis-hetero-patriarchy
+cis man
+cis men
+cisman
+cis-man
+cis male
+cismale
+cis-male
+cismen
+cis-men
+cis males
+cismales
+cis-males
 congressman
 congressmen
 councilman
@@ -76,6 +97,7 @@ fathers
 fathers-in-law
 fella
 fellas
+female-to-male
 fiancé
 fiancés
 fireman
@@ -219,6 +241,10 @@ suitors
 tailor
 tailors
 testosterone
+trans boy
+trans boys
+trans man
+trans men
 tsar
 tsars
 uncle

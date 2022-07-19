@@ -22,12 +22,32 @@ busgirl
 busgirls
 businesswoman
 businesswomen
+butch
+butches
 camerawoman
 camerawomen
 chairwoman
 chairwomen
 chick
 chicks
+cis woman
+cis women
+ciswoman
+cis-woman
+cis female
+cisfemale
+cis-female
+ciswomen
+cis-women
+cis females
+cisfemales
+cis-females
+cis girl
+cis girls
+cisgirl
+cis-girl
+cisgirls
+cis-girls
 concubine
 concubines
 congresswoman
@@ -59,6 +79,8 @@ estrogen
 female
 females
 feminine
+femme
+femmes
 fiancée
 fiancées
 firewoman
@@ -128,6 +150,7 @@ maidens
 maids
 mailwoman
 mailwomen
+male-to-female
 manageress
 manageresses
 marchioness
@@ -213,6 +236,10 @@ stewardess
 stewardesses
 strongwoman
 strongwomen
+trans girl
+trans girls
+trans woman
+trans women
 tsarina
 tsarinas
 waitress
