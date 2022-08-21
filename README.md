@@ -15,6 +15,7 @@ GenBit supports 5 languages: English, German, Spanish, French, Italian and Russi
 - [Gendered Terms](#terms)
 - [Supported Metrics](#metrics)
 - [Metric Scores, Benchmarking and Interpretation](#interpret)
+- [Citation](#citation)
 - [Useful Links](#links)
 - [Contributing](#contributing)
 - [Trademarks](#trademarks)
@@ -196,6 +197,23 @@ The score ranges are derived from certain type of datasets and may vary with dat
 
 It is recommended as a best practice to use both the **genbit_score** as well as observe the values given for **percentage_of_male/female/non-binary_gender_definition_words** to provide some indication of the reliability of the **genbit_score**. In a 'naturally' distributed dataset you would expect that the percentage values for the male/female/non-binary gender definition words not to be overly skewed e.g. if the value observed was 10% male_gender_definition_words, 90% female_gender_definition_words, 0% non-binary_gender_definition_words this would potentially indicate quality concerns with the dataset as such a extreme skew is unlikely (and definitely undesirable) in a dataset. 
 
+# <a name="citation"></a>
+## Citation
+<a>
+<pre>
+@article{sengupta2021genbit,
+  title={GenBiT: measure and mitigate gender bias in language datasets},
+  author={Sengupta, Kinshuk and Maher, Rana and Groves, Declan and Olieman, Chantal},
+  journal={Microsoft Journal of Applied Research},
+  year={2021},
+  volume={16},
+  pages={63--71}}
+}
+</pre>
+</a>
+<a href="https://www.microsoft.com/en-us/research/uploads/prod/2021/10/MSJAR_Genbit_Final_Version-616fd3a073758.pdf">Paper link</a>
+  
+  
 # <a name="links"></a>
 ## Useful Links
 
