@@ -7,7 +7,7 @@ This repository introduces the Gender Bias Tool (**G**en**B**i**t**), a tool to 
 GenBit helps determine if gender is uniformly distributed across data by measuring the strength of association between a pre-defined list of gender definition words and other words in the corpus via co-occurrence statistics. The key metric it produces (the genbit_score) gives an estimate of the strength of association, on average, of any word in the corpus with a male, female, non-binary, transgender (trans), and cisgender (cis) gender definition words. The metrics that it provides can be used to identify gender bias in a data set to enable the production and use of more balanced datasets for training, tuning and evaluating machine learning models. It can also be used as a standalone corpus analysis tool.
 
 
-GenBit supports 5 languages: English, German, Spanish, French, Italian and Russian. For English it provides metrics for both binary, non-binary, transgender, and cisgender bias; for the remaining four languages non-binary gender bias is currently not supported. To deal with the challenges of grammatical gender in non-English languages, it leverages [stanza lemmatizers](https://stanfordnlp.github.io/stanza/lemma.html). It also uses the NLTK tokenization libraries. The full list of requirements are listed in [requirements.txt](requirements.txt)
+GenBit supports 5 languages: English, German, Spanish, French, Italian and Russian. For English it provides metrics for both binary, non-binary, transgender, and cisgender bias; for the remaining four languages we currently only support binary gender bias. To deal with the challenges of grammatical gender in non-English languages, it leverages [stanza lemmatizers](https://stanfordnlp.github.io/stanza/lemma.html). It also uses the NLTK tokenization libraries. The full list of requirements are listed in [requirements.txt](requirements.txt)
 
 ## Contents
 - [Install GenBit](#installation)
@@ -24,7 +24,7 @@ GenBit supports 5 languages: English, German, Spanish, French, Italian and Russi
 # <a name="installation"></a>
 ## Install GenBit
 
-The package can be installed from [pypi](https://pypi.org/project/interpret-community/) with:
+The package can be installed from [pypi](https://pypi.org/project/genbit/) with:
 
 ```
 pip install genbit
@@ -56,7 +56,7 @@ test_text = ["I think she does not like cats. I think he does not like cats.", "
 genbit_metrics_object.add_data(test_text, tokenized=False)
 
 
-# To generate the gender bias metrics, we run `get_metrics` by setting `output_statistics` and `output_word_lists` tp false, we can reduce the number of metrics created.
+# To generate the gender bias metrics, we run `get_metrics` by setting `output_statistics` and `output_word_lists` to false, we can reduce the number of metrics created.
 
 
 metrics = genbit_metrics_object.get_metrics(output_statistics=True, output_word_list=True)
@@ -72,18 +72,20 @@ The metric works best on bigger corpora; therefore, we suggest analyzing at leas
 ## Gendered Terms
 We have collected a [list of "gendered" terms for female, male, non-binary, binary, transgender, and cisgender groups](https://github.com/microsoft/responsible-ai-toolbox-genbit/tree/main/genbit/gendered-word-lists).
 
-- Female words contain terms such as "her" and "waitress".
-- Male words contain terms such as "he" and "actor".
-- Non-binary words contain terms such as "X" and "Y".
-- Transgender words contain terms such as "X" and "Y".
-- Cisgender words contain terms such as "X" and "Y".
+- [Female words](https://github.com/microsoft/responsible-ai-toolbox-genbit/blob/main/genbit/gendered-word-lists/en/female.txt) contain terms such as "her" and "waitress".
+- [Male words](https://github.com/microsoft/responsible-ai-toolbox-genbit/blob/main/genbit/gendered-word-lists/en/male.txt) contain terms such as "he" and "fireman".
+- [Non-binary words](https://github.com/microsoft/responsible-ai-toolbox-genbit/blob/main/genbit/gendered-word-lists/en/non-binary.txt) contain terms such as "sibling" and "parent".
+- [Cisgender words](https://github.com/microsoft/responsible-ai-toolbox-genbit/blob/main/genbit/gendered-word-lists/en/cis.txt) contain terms such as "cisgender" and "cissexual".
+- [Transgender words](https://github.com/microsoft/responsible-ai-toolbox-genbit/blob/main/genbit/gendered-word-lists/en/trans.txt) contain terms such as "trans woman" and "trans man".
+
+Please note that there is no explicit file for binary terms because the terms from male.txt and female.txt will be combined to form the binary word list.
 
 The inclusion criterion for terms that are not inherently gendered (e.g., "womb" or "homemaker" in female.txt) should be: If the association of the term with a particular gender is only due to a social phenomenon that we want to approximate with our measurement (e.g., stereotyping, discrimination), then the term should be excluded. The categories are defined in terms of similar societal stereotypes/discrimination/bias/stigma because that is what GenBit would like to measure. 
 
 ### Creation of New Word Lists for Male/Female
 The gender definition terms consist of pairs of corresponding entries – one for male gendered forms and one for female gendered forms. In general, for every male gendered form, there should be one or more female gendered forms, and for every female gendered form there should be one or more male gendered form. It should be noted, however, that there may be some rare cases, where there are entries that do not have a opposite gender equivalent form in some languages.
 
-A gender definition entry is a concept that can only ever be attributed to a person of a specific gender; they represent words that are associated with gender by definition. They are unambiguous – they only ever have one possible semantic interpretation. They are primarily nouns or pronouns that refer to a person of a specific gender (e.g. he/she/zie, actor/actress, father/mother) but may occasionally include adjectives/adverbs/verbs (e.g. masculine / feminine, manly/womanly).
+A gender definition entry is a concept that can only ever be attributed to a person of a specific gender; they represent words that are associated with gender by definition. They are unambiguous – they only ever have one possible semantic interpretation. They are primarily nouns or pronouns that refer to a person of a specific gender (e.g. he/she/zie, father/mother) but may occasionally include adjectives/adverbs/verbs (e.g. masculine / feminine, manly/womanly).
 
 
 ### Creation of New Word Lists for Non-binary/Binary 
@@ -92,7 +94,7 @@ The binary/non-binary dimension has 3 categories:
 - Non-binary: terms that specifically refer to non-binary people and that are not typically used to refer to men or women - these terms require abandoning the idea of there being only two genders 
 - All-gender: terms that can refer to people of any gender, including men, women, and non-binary people 
 
-<b>Motivation for this split</b>: If we just put both non-binary and all-gender terms in the same txt file, we will not get any meaningful numbers out of GenBiT because the all-gender terms are so much more frequent and they're often used to refer to binary people, so we wouldn't really be measuring the anti-non-binary bias that we would like to measure.  On the other hand, if we only use the explicitly non-binary terms, we'll miss a lot of textual references to non-binary people that we would catch for binary people (e.g., we'd catch "brother" and "sister", but not "sibling").  (This is similar to how we catch "actress", but miss "actor" because it's ambiguous.) 
+<b>Motivation for this split</b>: If we just put both non-binary and all-gender terms in the same txt file, we will not get any meaningful numbers out of GenBiT because the all-gender terms are so much more frequent and they're often used to refer to binary people, so we wouldn't really be measuring the anti-non-binary bias that we would like to measure.  On the other hand, if we only use the explicitly non-binary terms, we'll miss a lot of textual references to non-binary people that we would catch for binary people (e.g., we'd catch "brother" and "sister", but not "sibling"). 
 
 We combined the categories “non-binary” and “all-gender” into one word list. 
 
