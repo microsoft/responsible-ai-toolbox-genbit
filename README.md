@@ -1,5 +1,9 @@
 # GenBit: A Tool for Measuring Gender Bias in Text Corpora
 
+This Responsible-AI-Toolbox-GenBit repo consists of a python library that aims to empower data scientists and ML developers to measure gender bias in their Natural Language Processing (NLP) datasets. 
+
+This repo is a part of the [Responsible AI Toolbox](https://github.com/microsoft/responsible-ai-toolbox#responsible-ai-toolbox), a suite of tools providing a collection of model and data exploration and assessment user interfaces and libraries that enable a better understanding of AI systems. These interfaces and libraries empower developers and stakeholders of AI systems to develop and monitor AI more responsibly, and take better data-driven actions.
+
 With the increasing adoption of Natural Language Processing (NLP) models in real-world applications and products, it has become more critical than ever to understand these models' biases and potential harms they could cause to their end users. Many NLP systems suffer from various biases often inherited from the data on which these systems are trained. The prejudice is exhibited at multiple levels spilling from how individuals generate, collect, and label the information leveraged into datasets. Datasets, features, and rules in machine learning algorithms absorb and often magnify such biases present in datasets. Therefore, it becomes essential to measure preferences at the data level to prevent unfair model outcomes.
 
 This repository introduces the Gender Bias Tool (**G**en**B**i**t**), a tool to measure gender bias in NLP datasets. The main goal of GenBit is to analyze your corpora and compute metrics that give insights into the gender bias present in a corpus. The computations in this tool are based primarily on ideas from Shikha Bordia and Samuel R. Bowman, "[Identifying and reducing gender bias in word-level language models](https://arxiv.org/abs/1904.03035)" in the NAACL 2019 Student Research Workshop. 
