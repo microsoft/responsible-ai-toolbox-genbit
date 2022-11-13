@@ -25,7 +25,8 @@ class GenBitMetrics:
             language_code,
             context_window,
             distance_weight,
-            percentile_cutoff)
+            percentile_cutoff,
+            self._tokenizer)
 
     def add_data(self, text_data: List[str], tokenized=False):
         if isinstance(text_data, str):

@@ -2,11 +2,78 @@
 # Licensed under the MIT License.
 
 import unittest
-import os
+import os, sys
 import json
 from parameterized import parameterized
 from genbit.metrics_calculation import MetricsCalculation
+from genbit.tokenizer import Tokenizer
 
+class TrieTestCase(unittest.TestCase):
+    language_code = "en"
+    context_window = 5
+    distance_weight = 0.95
+    percentile_cutoff = 80
+    tokenizer = Tokenizer(language_code)
+
+    def setUp(self):
+        self.metrics_calculation = MetricsCalculation(
+            self.language_code,
+            self.context_window,
+            self.distance_weight,
+            self.percentile_cutoff,
+            self.tokenizer,
+            False)
+
+    def testInit(self):
+        self.assertIsInstance(self.metrics_calculation, MetricsCalculation)
+
+    def testTrie(self):
+        trie = dict()
+        self.metrics_calculation._add_to_trie(trie, 'a@@@b@@@c')
+        self.metrics_calculation._add_to_trie(trie, 'a@@@b')
+        self.metrics_calculation._add_to_trie(trie, 'a@@@b@@@d')
+        
+        self.assertIn('a', trie)
+        self.assertIn('b', trie['a'])
+        self.assertIn('c', trie['a']['b'])
+        self.assertIn('d', trie['a']['b'])
+        self.assertIn(None, trie['a']['b'])
+        self.assertIn(None, trie['a']['b']['c'])
+        self.assertIn(None, trie['a']['b']['d'])
+
+        result, index = self.metrics_calculation._lookup_trie(trie, ['a'], 0)
+        self.assertEqual(result, None)
+        result, index = self.metrics_calculation._lookup_trie(trie, ['a','b'], 0)
+        self.assertEqual(result, 'a@@@b')
+        result, index = self.metrics_calculation._lookup_trie(trie, ['a','b','d','a'], 0)
+        self.assertEqual(result, 'a@@@b@@@d')
+        self.assertEqual(index, 3)
+
+    def testMWEs(self):
+        # re-initialize sets to empty so we can put some tricky test cases in
+        self.metrics_calculation._non_binary_gender_stats = False
+        self.metrics_calculation._male_gendered_words = set()        
+        self.metrics_calculation._female_gendered_words = set([
+            self.metrics_calculation._form_mwe(w)
+            for w in [' a-d c ', 'a b c-d', '\na b\t']            
+        ])
+        mwes = self.metrics_calculation._initialize_multiword_expressions()
+        self.assertIn('a', mwes)
+        self.assertIn('b', mwes['a'])
+        self.assertIn('d', mwes['a'])
+        self.assertIn('c', mwes['a']['d'])
+        self.assertIn(None, mwes['a']['d']['c'])
+        self.assertIn(None, mwes['a']['b'])
+        self.assertIn('d', mwes['a']['b']['c'])
+        self.assertIn(None, mwes['a']['b']['c']['d'])
+
+        self.metrics_calculation._multiword_expressions = mwes
+        self.assertEqual(
+            self.metrics_calculation._join_multiword_expressions('x a d c b'.split()),
+            'x a@@@d@@@c b'.split())
+        self.assertEqual(
+            self.metrics_calculation._join_multiword_expressions('x a c c b'.split()),
+            'x a c c b'.split())
 
 class AnalyzeSentencesTestCase(unittest.TestCase):
 
@@ -21,6 +88,7 @@ class AnalyzeSentencesTestCase(unittest.TestCase):
     context_window = 5
     distance_weight = 0.95
     percentile_cutoff = 80
+    tokenizer = Tokenizer(language_code)
 
     def setUp(self):
         self.metrics_calculation = MetricsCalculation(
@@ -28,6 +96,7 @@ class AnalyzeSentencesTestCase(unittest.TestCase):
             self.context_window,
             self.distance_weight,
             self.percentile_cutoff,
+            self.tokenizer,
             False)
 
     def testInit(self):
@@ -52,7 +121,8 @@ class AnalyzeSentencesTestCase(unittest.TestCase):
                 unsupported_language_code,
                 self.context_window,
                 self.distance_weight,
-                self.percentile_cutoff)
+                self.percentile_cutoff,
+                self.tokenizer)
 
     def testAnalyzeText(self):
         input_file = os.path.join(

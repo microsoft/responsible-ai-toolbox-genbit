@@ -6,7 +6,8 @@
     "bias_ratio": 0.9680853943955146,
     "bias_conditional_ratio": 0.5184759213614334,
     "female_conditional_prob": 0.012688050570962478,
-    "male_conditional_prob": 0.02130915029916753
+    "male_conditional_prob": 0.02130915029916753,
+    "binary_conditional_prob": 0.03399720087013001
   },
   "tell": {
     "frequency": 180,
@@ -15,7 +16,8 @@
     "bias_ratio": 0.903985495380057,
     "bias_conditional_ratio": 0.45437602234597596,
     "female_conditional_prob": 0.08714815558727577,
-    "male_conditional_prob": 0.13727492000520314
+    "male_conditional_prob": 0.13727492000520314,
+    "binary_conditional_prob": 0.22442307559247893
   },
   "customer": {
     "frequency": 84,
@@ -24,7 +26,8 @@
     "bias_ratio": 0.9859602260617598,
     "bias_conditional_ratio": 0.5363507530276787,
     "female_conditional_prob": 0.04118828303425774,
-    "male_conditional_prob": 0.0704219198751301
+    "male_conditional_prob": 0.0704219198751301,
+    "binary_conditional_prob": 0.11161020290938785
   },
   ".": {
     "frequency": 1080,
@@ -33,7 +36,8 @@
     "bias_ratio": 0.8883803349683645,
     "bias_conditional_ratio": 0.4387708619342835,
     "female_conditional_prob": 0.6010034945962475,
-    "male_conditional_prob": 0.9320361589490231
+    "male_conditional_prob": 0.9320361589490231,
+    "binary_conditional_prob": 1.5330396535452706
   },
   "complete": {
     "frequency": 30,
@@ -42,7 +46,8 @@
     "bias_ratio": 1.013300681350941,
     "bias_conditional_ratio": 0.5636912083168599,
     "female_conditional_prob": 0.013299448409461664,
-    "male_conditional_prob": 0.0233690797346514
+    "male_conditional_prob": 0.0233690797346514,
+    "binary_conditional_prob": 0.03666852814411306
   },
   "repair": {
     "frequency": 38,
@@ -51,7 +56,8 @@
     "bias_ratio": 0.9791589588739037,
     "bias_conditional_ratio": 0.5295494858398226,
     "female_conditional_prob": 0.01883499031402936,
-    "male_conditional_prob": 0.031984960652965654
+    "male_conditional_prob": 0.031984960652965654,
+    "binary_conditional_prob": 0.050819950966995014
   },
   "taxpayer": {
     "frequency": 18,
@@ -60,7 +66,8 @@
     "bias_ratio": 0.7908691037126926,
     "bias_conditional_ratio": 0.3412596306786114,
     "female_conditional_prob": 0.012474387744698206,
-    "male_conditional_prob": 0.017547951027575434
+    "male_conditional_prob": 0.017547951027575434,
+    "binary_conditional_prob": 0.03002233877227364
   },
   "meet": {
     "frequency": 48,
@@ -69,7 +76,8 @@
     "bias_ratio": 1.0442544533983176,
     "bias_conditional_ratio": 0.5946449803642367,
     "female_conditional_prob": 0.021393035787112553,
-    "male_conditional_prob": 0.038772468457336125
+    "male_conditional_prob": 0.038772468457336125,
+    "binary_conditional_prob": 0.06016550424444868
   },
   "accountant": {
     "frequency": 20,
@@ -78,7 +86,8 @@
     "bias_ratio": 0.9995273033932773,
     "bias_conditional_ratio": 0.5499178303591962,
     "female_conditional_prob": 0.011528659257748776,
-    "male_conditional_prob": 0.01998044159729448
+    "male_conditional_prob": 0.01998044159729448,
+    "binary_conditional_prob": 0.03150910085504326
   },
   "tax": {
     "frequency": 20,
@@ -87,7 +96,8 @@
     "bias_ratio": 1.1153463581706347,
     "bias_conditional_ratio": 0.6657368851365535,
     "female_conditional_prob": 0.010354913336052202,
-    "male_conditional_prob": 0.02014987350416233
+    "male_conditional_prob": 0.02014987350416233,
+    "binary_conditional_prob": 0.03050478684021453
   },
   "supervisor": {
     "frequency": 20,
@@ -96,7 +106,8 @@
     "bias_ratio": 1.009053097097038,
     "bias_conditional_ratio": 0.5594436240629568,
     "female_conditional_prob": 0.012695227875203914,
-    "male_conditional_prob": 0.022212824206555667
+    "male_conditional_prob": 0.022212824206555667,
+    "binary_conditional_prob": 0.03490805208175958
   },
   "style": {
     "frequency": 18,
@@ -105,7 +116,8 @@
     "bias_ratio": 0.9420496526539408,
     "bias_conditional_ratio": 0.49244017961985953,
     "female_conditional_prob": 0.01137368372756933,
-    "male_conditional_prob": 0.018610806776795
+    "male_conditional_prob": 0.018610806776795,
+    "binary_conditional_prob": 0.02998449050436433
   },
   "engineer": {
     "frequency": 20,
@@ -114,7 +126,8 @@
     "bias_ratio": 1.0108924325857795,
     "bias_conditional_ratio": 0.5612829595516983,
     "female_conditional_prob": 0.012422306280587273,
-    "male_conditional_prob": 0.021775308922996874
+    "male_conditional_prob": 0.021775308922996874,
+    "binary_conditional_prob": 0.03419761520358415
   },
   "inform": {
     "frequency": 56,
@@ -123,7 +136,8 @@
     "bias_ratio": 0.977135746483715,
     "bias_conditional_ratio": 0.5275262734496341,
     "female_conditional_prob": 0.019763458401305056,
-    "male_conditional_prob": 0.033493820889698225
+    "male_conditional_prob": 0.033493820889698225,
+    "binary_conditional_prob": 0.05325727929100328
   },
   "client": {
     "frequency": 42,
@@ -132,7 +146,8 @@
     "bias_ratio": 0.6985102736804648,
     "bias_conditional_ratio": 0.2489008006463837,
     "female_conditional_prob": 0.01914494137438825,
-    "male_conditional_prob": 0.024555585002601448
+    "male_conditional_prob": 0.024555585002601448,
+    "binary_conditional_prob": 0.0437005263769897
   },
   "time": {
     "frequency": 36,
@@ -141,7 +156,8 @@
     "bias_ratio": 0.9543559077861816,
     "bias_conditional_ratio": 0.5047464347521005,
     "female_conditional_prob": 0.015713763764274063,
-    "male_conditional_prob": 0.026030877666493233
+    "male_conditional_prob": 0.026030877666493233,
+    "binary_conditional_prob": 0.041744641430767296
   },
   "educator": {
     "frequency": 20,
@@ -150,7 +166,8 @@
     "bias_ratio": 1.006827348973199,
     "bias_conditional_ratio": 0.5572178759391178,
     "female_conditional_prob": 0.012400958401305057,
-    "male_conditional_prob": 0.021649700832466173
+    "male_conditional_prob": 0.021649700832466173,
+    "binary_conditional_prob": 0.03405065923377123
   },
   "meeting": {
     "frequency": 44,
@@ -159,7 +176,8 @@
     "bias_ratio": 0.5613380993092936,
     "bias_conditional_ratio": 0.11172862627521239,
     "female_conditional_prob": 0.028660681076672096,
-    "male_conditional_prob": 0.03204864203954214
+    "male_conditional_prob": 0.03204864203954214,
+    "binary_conditional_prob": 0.06070932311621424
   },
   "student": {
     "frequency": 46,
@@ -168,7 +186,8 @@
     "bias_ratio": 0.4993990298085514,
     "bias_conditional_ratio": 0.0497895567744704,
     "female_conditional_prob": 0.028889066578303417,
-    "male_conditional_prob": 0.030363850156087408
+    "male_conditional_prob": 0.030363850156087408,
+    "binary_conditional_prob": 0.05925291673439083
   },
   "clerk": {
     "frequency": 20,
@@ -177,7 +196,8 @@
     "bias_ratio": 0.914251507655647,
     "bias_conditional_ratio": 0.46464203462156595,
     "female_conditional_prob": 0.01423374745106036,
-    "male_conditional_prob": 0.022652217741935484
+    "male_conditional_prob": 0.022652217741935484,
+    "binary_conditional_prob": 0.03688596519299585
   },
   "paperwork": {
     "frequency": 36,
@@ -186,7 +206,8 @@
     "bias_ratio": 0.883955276011297,
     "bias_conditional_ratio": 0.4343458029772158,
     "female_conditional_prob": 0.020300080546492655,
-    "male_conditional_prob": 0.03134236374869927
+    "male_conditional_prob": 0.03134236374869927,
+    "binary_conditional_prob": 0.05164244429519192
   },
   "patient": {
     "frequency": 92,
@@ -195,7 +216,8 @@
     "bias_ratio": 0.9845023480322376,
     "bias_conditional_ratio": 0.5348928749981566,
     "female_conditional_prob": 0.03930439080342576,
-    "male_conditional_prob": 0.06710302419354842
+    "male_conditional_prob": 0.06710302419354842,
+    "binary_conditional_prob": 0.10640741499697418
   },
   "homeowner": {
     "frequency": 28,
@@ -204,7 +226,8 @@
     "bias_ratio": 0.958423098544987,
     "bias_conditional_ratio": 0.5088136255109058,
     "female_conditional_prob": 0.015433655179445347,
-    "male_conditional_prob": 0.025671056516649318
+    "male_conditional_prob": 0.025671056516649318,
+    "binary_conditional_prob": 0.04110471169609466
   },
   "house": {
     "frequency": 46,
@@ -213,7 +236,8 @@
     "bias_ratio": 0.8674020397534257,
     "bias_conditional_ratio": 0.4177925667193447,
     "female_conditional_prob": 0.025434264885807495,
-    "male_conditional_prob": 0.03862461791103017
+    "male_conditional_prob": 0.03862461791103017,
+    "binary_conditional_prob": 0.06405888279683766
   },
   "purchase": {
     "frequency": 26,
@@ -222,7 +246,8 @@
     "bias_ratio": 0.7504940406146929,
     "bias_conditional_ratio": 0.3008845675806119,
     "female_conditional_prob": 0.012437416394779771,
-    "male_conditional_prob": 0.016803613423517168
+    "male_conditional_prob": 0.016803613423517168,
+    "binary_conditional_prob": 0.02924102981829694
   },
   "building": {
     "frequency": 36,
@@ -231,7 +256,8 @@
     "bias_ratio": 0.8989497519091934,
     "bias_conditional_ratio": 0.4493402788751123,
     "female_conditional_prob": 0.017425478181076672,
-    "male_conditional_prob": 0.027310566467221638
+    "male_conditional_prob": 0.027310566467221638,
+    "binary_conditional_prob": 0.044736044648298307
   },
   "code": {
     "frequency": 26,
@@ -240,7 +266,8 @@
     "bias_ratio": 0.6920169888208609,
     "bias_conditional_ratio": 0.24240751578677985,
     "female_conditional_prob": 0.013218657728384991,
-    "male_conditional_prob": 0.01684471253902185
+    "male_conditional_prob": 0.01684471253902185,
+    "binary_conditional_prob": 0.03006337026740684
   },
   "mechanic": {
     "frequency": 20,
@@ -249,7 +276,8 @@
     "bias_ratio": 0.9232425788395016,
     "bias_conditional_ratio": 0.4736331058054206,
     "female_conditional_prob": 0.012268086256117453,
-    "male_conditional_prob": 0.019700310223725283
+    "male_conditional_prob": 0.019700310223725283,
+    "binary_conditional_prob": 0.03196839647984274
   },
   "call": {
     "frequency": 68,
@@ -258,7 +286,8 @@
     "bias_ratio": 0.7605226179901333,
     "bias_conditional_ratio": 0.31091314495605227,
     "female_conditional_prob": 0.03854403242251222,
-    "male_conditional_prob": 0.05259991122528617
+    "male_conditional_prob": 0.05259991122528617,
+    "binary_conditional_prob": 0.09114394364779839
   },
   "speak": {
     "frequency": 52,
@@ -267,7 +296,8 @@
     "bias_ratio": 0.8809708559089948,
     "bias_conditional_ratio": 0.4313613828749139,
     "female_conditional_prob": 0.02589780638254486,
-    "male_conditional_prob": 0.03986583344172736
+    "male_conditional_prob": 0.03986583344172736,
+    "binary_conditional_prob": 0.06576363982427222
   },
   "error": {
     "frequency": 20,
@@ -276,7 +306,8 @@
     "bias_ratio": 1.0091060349992584,
     "bias_conditional_ratio": 0.5594965619651774,
     "female_conditional_prob": 0.01270240517944535,
-    "male_conditional_prob": 0.022226558922996874
+    "male_conditional_prob": 0.022226558922996874,
+    "binary_conditional_prob": 0.03492896410244222
   },
   "confide": {
     "frequency": 20,
@@ -285,7 +316,8 @@
     "bias_ratio": 1.0770058348372853,
     "bias_conditional_ratio": 0.6273963618032043,
     "female_conditional_prob": 0.011510052508156605,
-    "male_conditional_prob": 0.02155520128772112
+    "male_conditional_prob": 0.02155520128772112,
+    "binary_conditional_prob": 0.03306525379587773
   },
   "therapist": {
     "frequency": 20,
@@ -294,7 +326,8 @@
     "bias_ratio": 1.0324909981871875,
     "bias_conditional_ratio": 0.5828815251531063,
     "female_conditional_prob": 0.010421349408646002,
-    "male_conditional_prob": 0.018666641519250775
+    "male_conditional_prob": 0.018666641519250775,
+    "binary_conditional_prob": 0.029087990927896778
   },
   "undergraduate": {
     "frequency": 18,
@@ -303,7 +336,8 @@
     "bias_ratio": 0.7821898353653676,
     "bias_conditional_ratio": 0.33258036233128646,
     "female_conditional_prob": 0.012680689233278955,
-    "male_conditional_prob": 0.017684006893860554
+    "male_conditional_prob": 0.017684006893860554,
+    "binary_conditional_prob": 0.03036469612713951
   },
   "administrator": {
     "frequency": 20,
@@ -312,7 +346,8 @@
     "bias_ratio": 0.9336340144549129,
     "bias_conditional_ratio": 0.4840245414208319,
     "female_conditional_prob": 0.012975142740619902,
-    "male_conditional_prob": 0.021053355879292402
+    "male_conditional_prob": 0.021053355879292402,
+    "binary_conditional_prob": 0.034028498619912306
   },
   "petition": {
     "frequency": 20,
@@ -321,7 +356,8 @@
     "bias_ratio": 1.0460102335807737,
     "bias_conditional_ratio": 0.5964007605466927,
     "female_conditional_prob": 0.01301235623980424,
-    "male_conditional_prob": 0.02362487415452653
+    "male_conditional_prob": 0.02362487415452653,
+    "binary_conditional_prob": 0.03663723039433077
   },
   "salesperson": {
     "frequency": 20,
@@ -330,7 +366,8 @@
     "bias_ratio": 1.078938125676282,
     "bias_conditional_ratio": 0.6293286526422008,
     "female_conditional_prob": 0.010354913336052202,
-    "male_conditional_prob": 0.019429446540062432
+    "male_conditional_prob": 0.019429446540062432,
+    "binary_conditional_prob": 0.029784359876114636
   },
   "explain": {
     "frequency": 26,
@@ -339,7 +376,8 @@
     "bias_ratio": 0.7934874676550409,
     "bias_conditional_ratio": 0.3438779946209599,
     "female_conditional_prob": 0.012934868474714516,
-    "male_conditional_prob": 0.01824342319198751
+    "male_conditional_prob": 0.01824342319198751,
+    "binary_conditional_prob": 0.031178291666702027
   },
   "visitor": {
     "frequency": 26,
@@ -348,7 +386,8 @@
     "bias_ratio": 0.9110349808194896,
     "bias_conditional_ratio": 0.46142550778540836,
     "female_conditional_prob": 0.013347277732463296,
-    "male_conditional_prob": 0.021173236537460973
+    "male_conditional_prob": 0.021173236537460973,
+    "binary_conditional_prob": 0.034520514269924266
   },
   "receptionist": {
     "frequency": 20,
@@ -357,7 +396,8 @@
     "bias_ratio": 1.0218071183800455,
     "bias_conditional_ratio": 0.5721976453459643,
     "female_conditional_prob": 0.014411010399673735,
-    "male_conditional_prob": 0.025538577978668046
+    "male_conditional_prob": 0.025538577978668046,
+    "binary_conditional_prob": 0.03994958837834178
   },
   "sign": {
     "frequency": 26,
@@ -366,7 +406,8 @@
     "bias_ratio": 0.8109475524808147,
     "bias_conditional_ratio": 0.3613380794467335,
     "female_conditional_prob": 0.016248235623980423,
-    "male_conditional_prob": 0.02332025754422476
+    "male_conditional_prob": 0.02332025754422476,
+    "binary_conditional_prob": 0.03956849316820518
   },
   "estimate": {
     "frequency": 26,
@@ -375,7 +416,8 @@
     "bias_ratio": 0.6196433529319042,
     "bias_conditional_ratio": 0.17003387989782306,
     "female_conditional_prob": 0.0158904552406199,
-    "male_conditional_prob": 0.01883567182622268
+    "male_conditional_prob": 0.01883567182622268,
+    "binary_conditional_prob": 0.03472612706684258
   },
   "librarian": {
     "frequency": 20,
@@ -384,7 +426,8 @@
     "bias_ratio": 1.0057856601255222,
     "bias_conditional_ratio": 0.5561761870914411,
     "female_conditional_prob": 0.012268086256117453,
-    "male_conditional_prob": 0.021395432492195623
+    "male_conditional_prob": 0.021395432492195623,
+    "binary_conditional_prob": 0.033663518748313075
   },
   "help": {
     "frequency": 20,
@@ -393,7 +436,8 @@
     "bias_ratio": 1.0057856601255222,
     "bias_conditional_ratio": 0.5561761870914411,
     "female_conditional_prob": 0.012268086256117453,
-    "male_conditional_prob": 0.021395432492195623
+    "male_conditional_prob": 0.021395432492195623,
+    "binary_conditional_prob": 0.033663518748313075
   },
   "child": {
     "frequency": 44,
@@ -402,7 +446,8 @@
     "bias_ratio": 0.8165241001633963,
     "bias_conditional_ratio": 0.3669146271293151,
     "female_conditional_prob": 0.018859243984502443,
-    "male_conditional_prob": 0.027219069654006244
+    "male_conditional_prob": 0.027219069654006244,
+    "binary_conditional_prob": 0.046078313638508686
   },
   "encourage": {
     "frequency": 42,
@@ -411,7 +456,8 @@
     "bias_ratio": 0.7223832614248633,
     "bias_conditional_ratio": 0.27277378839078215,
     "female_conditional_prob": 0.02250459777732463,
-    "male_conditional_prob": 0.029562108480749215
+    "male_conditional_prob": 0.029562108480749215,
+    "binary_conditional_prob": 0.052066706258073844
   },
   "advisor": {
     "frequency": 20,
@@ -420,7 +466,8 @@
     "bias_ratio": 1.0108924325857795,
     "bias_conditional_ratio": 0.5612829595516983,
     "female_conditional_prob": 0.012422306280587273,
-    "male_conditional_prob": 0.021775308922996874
+    "male_conditional_prob": 0.021775308922996874,
+    "binary_conditional_prob": 0.03419761520358415
   },
   "application": {
     "frequency": 20,
@@ -429,7 +476,8 @@
     "bias_ratio": 1.006881527001577,
     "bias_conditional_ratio": 0.5572720539674958,
     "female_conditional_prob": 0.012407951672104404,
-    "male_conditional_prob": 0.021663083376690942
+    "male_conditional_prob": 0.021663083376690942,
+    "binary_conditional_prob": 0.03407103504879534
   },
   "pharmacist": {
     "frequency": 20,
@@ -438,7 +486,8 @@
     "bias_ratio": 1.0080074421738816,
     "bias_conditional_ratio": 0.5583979691398003,
     "female_conditional_prob": 0.012555178425774876,
-    "male_conditional_prob": 0.021944821149843908
+    "male_conditional_prob": 0.021944821149843908,
+    "binary_conditional_prob": 0.034499999575618785
   },
   "food": {
     "frequency": 20,
@@ -447,7 +496,8 @@
     "bias_ratio": 0.8913907329664037,
     "bias_conditional_ratio": 0.4417812599323227,
     "female_conditional_prob": 0.012555178425774877,
-    "male_conditional_prob": 0.019529271917273675
+    "male_conditional_prob": 0.019529271917273675,
+    "binary_conditional_prob": 0.03208445034304855
   },
   "recommend": {
     "frequency": 34,
@@ -456,7 +506,8 @@
     "bias_ratio": 0.6947657547745849,
     "bias_conditional_ratio": 0.2451562817405037,
     "female_conditional_prob": 0.02146296849510603,
-    "male_conditional_prob": 0.027425831815816846
+    "male_conditional_prob": 0.027425831815816846,
+    "binary_conditional_prob": 0.04888880031092288
   },
   "\"": {
     "frequency": 144,
@@ -465,7 +516,8 @@
     "bias_ratio": 1.0091221203586438,
     "bias_conditional_ratio": 0.5595126473245627,
     "female_conditional_prob": 0.04726278140293639,
-    "male_conditional_prob": 0.08270133714880328
+    "male_conditional_prob": 0.08270133714880328,
+    "binary_conditional_prob": 0.12996411855173967
   },
   "warn": {
     "frequency": 60,
@@ -474,7 +526,8 @@
     "bias_ratio": 1.0892059866794979,
     "bias_conditional_ratio": 0.6395965136454167,
     "female_conditional_prob": 0.02154763356443719,
-    "male_conditional_prob": 0.040848190036420394
+    "male_conditional_prob": 0.040848190036420394,
+    "binary_conditional_prob": 0.06239582360085759
   },
   ",": {
     "frequency": 72,
@@ -483,7 +536,8 @@
     "bias_ratio": 0.8815763438426967,
     "bias_conditional_ratio": 0.4319668708086156,
     "female_conditional_prob": 0.02596247960848287,
-    "male_conditional_prob": 0.03998959417273674
+    "male_conditional_prob": 0.03998959417273674,
+    "binary_conditional_prob": 0.0659520737812196
   },
   "psychologist": {
     "frequency": 20,
@@ -492,7 +546,8 @@
     "bias_ratio": 1.0038199676471915,
     "bias_conditional_ratio": 0.5542104946131104,
     "female_conditional_prob": 0.012540823817292006,
-    "male_conditional_prob": 0.021828134755463056
+    "male_conditional_prob": 0.021828134755463056,
+    "binary_conditional_prob": 0.034368958572755064
   },
   "physician": {
     "frequency": 20,
@@ -501,7 +556,8 @@
     "bias_ratio": 1.0168534510622136,
     "bias_conditional_ratio": 0.5672439780281325,
     "female_conditional_prob": 0.012695043841761827,
-    "male_conditional_prob": 0.02238644510926118
+    "male_conditional_prob": 0.02238644510926118,
+    "binary_conditional_prob": 0.035081488951023004
   },
   "carpenter": {
     "frequency": 20,
@@ -510,7 +566,8 @@
     "bias_ratio": 1.004137726871825,
     "bias_conditional_ratio": 0.5545282538377441,
     "female_conditional_prob": 0.012555178425774876,
-    "male_conditional_prob": 0.021860065036420392
+    "male_conditional_prob": 0.021860065036420392,
+    "binary_conditional_prob": 0.034415243462195266
   },
   "week": {
     "frequency": 18,
@@ -519,7 +576,8 @@
     "bias_ratio": 0.7460305138748723,
     "bias_conditional_ratio": 0.2964210408407912,
     "female_conditional_prob": 0.01270240517944535,
-    "male_conditional_prob": 0.01708519673517169
+    "male_conditional_prob": 0.01708519673517169,
+    "binary_conditional_prob": 0.02978760191461704
   },
   "nurse": {
     "frequency": 20,
@@ -528,7 +586,8 @@
     "bias_ratio": 1.0118622404853825,
     "bias_conditional_ratio": 0.5622527674513014,
     "female_conditional_prob": 0.012555178425774876,
-    "male_conditional_prob": 0.022029577263267423
+    "male_conditional_prob": 0.022029577263267423,
+    "binary_conditional_prob": 0.0345847556890423
   },
   "notify": {
     "frequency": 20,
@@ -537,7 +596,8 @@
     "bias_ratio": 1.074196487614468,
     "bias_conditional_ratio": 0.6245870145803869,
     "female_conditional_prob": 0.010199937805872757,
-    "male_conditional_prob": 0.019048124349635792
+    "male_conditional_prob": 0.019048124349635792,
+    "binary_conditional_prob": 0.02924806215550855
   },
   "hour": {
     "frequency": 20,
@@ -546,7 +606,8 @@
     "bias_ratio": 0.8913907329664037,
     "bias_conditional_ratio": 0.4417812599323227,
     "female_conditional_prob": 0.012555178425774877,
-    "male_conditional_prob": 0.019529271917273675
+    "male_conditional_prob": 0.019529271917273675,
+    "binary_conditional_prob": 0.03208445034304855
   },
   "leave": {
     "frequency": 20,
@@ -555,7 +616,8 @@
     "bias_ratio": 0.9338949370035423,
     "bias_conditional_ratio": 0.4842854639694611,
     "female_conditional_prob": 0.01270240517944535,
-    "male_conditional_prob": 0.020616192767950046
+    "male_conditional_prob": 0.020616192767950046,
+    "binary_conditional_prob": 0.0333185979473954
   },
   "condition": {
     "frequency": 20,
@@ -564,7 +626,8 @@
     "bias_ratio": 0.8859878382805226,
     "bias_conditional_ratio": 0.43637836524644164,
     "female_conditional_prob": 0.012268086256117453,
-    "male_conditional_prob": 0.018979883259625387
+    "male_conditional_prob": 0.018979883259625387,
+    "binary_conditional_prob": 0.031247969515742838
   },
   "rewiring": {
     "frequency": 20,
@@ -573,7 +636,8 @@
     "bias_ratio": 0.9968636709973419,
     "bias_conditional_ratio": 0.5472541979632608,
     "female_conditional_prob": 0.011241567088091353,
-    "male_conditional_prob": 0.0194310529396462
+    "male_conditional_prob": 0.0194310529396462,
+    "binary_conditional_prob": 0.030672620027737553
   },
   "day": {
     "frequency": 34,
@@ -582,7 +646,8 @@
     "bias_ratio": 0.7404185674827232,
     "bias_conditional_ratio": 0.29080909444864206,
     "female_conditional_prob": 0.013564437194127246,
-    "male_conditional_prob": 0.018142559833506763
+    "male_conditional_prob": 0.018142559833506763,
+    "binary_conditional_prob": 0.03170699702763401
   },
   "officer": {
     "frequency": 20,
@@ -591,7 +656,8 @@
     "bias_ratio": 0.9292826752508749,
     "bias_conditional_ratio": 0.4796732022167938,
     "female_conditional_prob": 0.012967781402936378,
-    "male_conditional_prob": 0.020950052029136315
+    "male_conditional_prob": 0.020950052029136315,
+    "binary_conditional_prob": 0.03391783343207269
   },
   "arrest": {
     "frequency": 20,
@@ -600,7 +666,8 @@
     "bias_ratio": 0.9338426309214654,
     "bias_conditional_ratio": 0.4842331578873843,
     "female_conditional_prob": 0.012990252854812399,
-    "male_conditional_prob": 0.0210822710718002
+    "male_conditional_prob": 0.0210822710718002,
+    "binary_conditional_prob": 0.0340725239266126
   },
   "-": {
     "frequency": 32,
@@ -609,7 +676,8 @@
     "bias_ratio": 0.6353829401342536,
     "bias_conditional_ratio": 0.18577346710017242,
     "female_conditional_prob": 0.014532269066068514,
-    "male_conditional_prob": 0.017499023803329863
+    "male_conditional_prob": 0.017499023803329863,
+    "binary_conditional_prob": 0.032031292869398376
   },
   "perform": {
     "frequency": 24,
@@ -618,7 +686,8 @@
     "bias_ratio": 0.5947114725192901,
     "bias_conditional_ratio": 0.1451019994852088,
     "female_conditional_prob": 0.015787561174551386,
-    "male_conditional_prob": 0.01825290712799167
+    "male_conditional_prob": 0.01825290712799167,
+    "binary_conditional_prob": 0.03404046830254306
   },
   "painting": {
     "frequency": 32,
@@ -627,7 +696,8 @@
     "bias_ratio": 0.6451858710498393,
     "bias_conditional_ratio": 0.19557639801575835,
     "female_conditional_prob": 0.017417729404567695,
-    "male_conditional_prob": 0.021180162591050985
+    "male_conditional_prob": 0.021180162591050985,
+    "binary_conditional_prob": 0.03859789199561868
   },
   "set": {
     "frequency": 24,
@@ -636,7 +706,8 @@
     "bias_ratio": 0.0,
     "bias_conditional_ratio": -0.4496094730340811,
     "female_conditional_prob": 0.02262512030995105,
-    "male_conditional_prob": 0.014432048647242448
+    "male_conditional_prob": 0.014432048647242448,
+    "binary_conditional_prob": 0.0370571689571935
   },
   "eat": {
     "frequency": 24,
@@ -645,7 +716,8 @@
     "bias_ratio": 0.6320680169893916,
     "bias_conditional_ratio": 0.18245854395531058,
     "female_conditional_prob": 0.013766137846655792,
-    "male_conditional_prob": 0.016521628511966695
+    "male_conditional_prob": 0.016521628511966695,
+    "binary_conditional_prob": 0.030287766358622487
   },
   "guest": {
     "frequency": 24,
@@ -654,6 +726,7 @@
     "bias_ratio": 0.6342119329334198,
     "bias_conditional_ratio": 0.18460245989933874,
     "female_conditional_prob": 0.014251782728384989,
-    "male_conditional_prob": 0.017141192117585843
+    "male_conditional_prob": 0.017141192117585843,
+    "binary_conditional_prob": 0.03139297484597083
   }
 }
