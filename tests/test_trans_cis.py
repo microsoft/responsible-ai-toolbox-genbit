@@ -27,12 +27,12 @@ class TransCisGenderTestCase(unittest.TestCase):
         self.assertAlmostEqual(results["genbit_score"], 0.0)
         self.assertAlmostEqual(results["percentage_of_female_gender_definition_words"], 0.375)
         self.assertAlmostEqual(results["percentage_of_male_gender_definition_words"], 0.375)
-        self.assertAlmostEqual(results["percentage_of_trans_gender_definition_words"], 0.5)
-        self.assertAlmostEqual(results["percentage_of_cis_gender_definition_words"], 0.5)
-        self.assertAlmostEqual(results["additional_metrics"]["avg_trans_cis_bias_ratio"], -1.0480571379835437)
-        self.assertAlmostEqual(results["additional_metrics"]["avg_trans_cis_bias_conditional"], -1.0480571379835437)
-        self.assertAlmostEqual(results["additional_metrics"]["avg_trans_cis_bias_ratio_absolute"], 1.0480571379835437)
-        self.assertAlmostEqual(results["additional_metrics"]["avg_trans_cis_bias_conditional_absolute"], 1.0480571379835437)
+        self.assertAlmostEqual(results["percentage_of_trans_gender_definition_words"], 1.0)
+        self.assertAlmostEqual(results["percentage_of_cis_gender_definition_words"], 0.0)
+        self.assertAlmostEqual(results["additional_metrics"]["avg_trans_cis_bias_ratio"], -1.548421887461201)
+        self.assertAlmostEqual(results["additional_metrics"]["avg_trans_cis_bias_conditional"], -0.9293826790549776)
+        self.assertAlmostEqual(results["additional_metrics"]["avg_trans_cis_bias_ratio_absolute"], 1.548421887461201)
+        self.assertAlmostEqual(results["additional_metrics"]["avg_trans_cis_bias_conditional_absolute"], 0.9293826790549776)
 
     def testAnalyzeBalancedTransCisText(self):
         genbit_metrics = GenBitMetrics("en", percentile_cutoff=0)
