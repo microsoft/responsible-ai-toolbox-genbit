@@ -22,6 +22,7 @@ class TrieTestCase(unittest.TestCase):
             self.distance_weight,
             self.percentile_cutoff,
             self.tokenizer,
+            False,
             False)
 
     def testInit(self):
@@ -97,6 +98,7 @@ class AnalyzeSentencesTestCase(unittest.TestCase):
             self.distance_weight,
             self.percentile_cutoff,
             self.tokenizer,
+            False,
             False)
 
     def testInit(self):

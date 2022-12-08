@@ -31,7 +31,7 @@ class LemmatizerTestCaseTestCase(unittest.TestCase):
         self.assertEqual(lem.lemmatize_token("be"), "be")
 
     def test_cooccurrence_matrix(self):
-         metrics_calculation = MetricsCalculation(self.language_code, 5, 0.95, 80, self.tokenizer, False)
+         metrics_calculation = MetricsCalculation(self.language_code, 5, 0.95, 80, self.tokenizer, False, False)
          metrics_calculation.analyze_text(["he", "eats"])
          metrics_calculation.analyze_text(["he", "eating"])
          metrics_calculation.analyze_text(["he", "eat"])
