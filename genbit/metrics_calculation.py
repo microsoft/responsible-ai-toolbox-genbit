@@ -361,7 +361,6 @@ class MetricsCalculation:
                 overall_metrics.avg_bias_conditional += self._bias_scores_conditional[token]
                 overall_metrics.avg_bias_conditional_absolute += abs(
                     self._bias_scores_conditional[token])
-
                 overall_metrics.avg_non_binary_bias_ratio += self._non_binary_bias_scores_ratio[token]
                 overall_metrics.avg_non_binary_bias_ratio_absolute += abs(
                     self._non_binary_bias_scores_ratio[token])

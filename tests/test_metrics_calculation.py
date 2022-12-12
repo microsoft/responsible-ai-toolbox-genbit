@@ -22,6 +22,7 @@ class TrieTestCase(unittest.TestCase):
             self.distance_weight,
             self.percentile_cutoff,
             self.tokenizer,
+            False,
             False)
 
     def testInit(self):
@@ -97,6 +98,7 @@ class AnalyzeSentencesTestCase(unittest.TestCase):
             self.distance_weight,
             self.percentile_cutoff,
             self.tokenizer,
+            False,
             False)
 
     def testInit(self):
@@ -206,7 +208,6 @@ class AnalyzeSentencesTestCase(unittest.TestCase):
 
         expected_results_path = os.path.join(
             os.getcwd(), self.expected_word_based_results_path)
-
         with open(expected_results_path, "r", encoding="utf-8") as expected_statistics_results_file:
             expected_statistics_result = json.load(
                 expected_statistics_results_file)
