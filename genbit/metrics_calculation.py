@@ -61,6 +61,8 @@ class MetricsCalculation:
         self._non_binary_conditional_probs = None
         self._trans_conditional_probs = None
         self._cis_conditional_probs = None
+        self._trans_cis_bias_scores_ratio = None
+        self._trans_cis_bias_scores_conditional = None
         self._trans_cis_stats = False
         self._tokens_considered = None
         self._load_word_lists(language_code, non_binary_gender_stats, trans_cis_stats)
@@ -181,7 +183,7 @@ class MetricsCalculation:
             elif token in self._non_binary_gendered_words:
                 self._update_all_surrounding_words(
                     token_index, "non-binary", sentence_tokens)
-            
+       
             if token in self._trans_gendered_words:
                 self._update_all_surrounding_words(
                     token_index, "trans", sentence_tokens)
@@ -300,16 +302,13 @@ class MetricsCalculation:
         self._trans_conditional_probs = {}
         self._cis_conditional_probs = {}
         self._tokens_considered = 0
+        gender_lists = self._female_gendered_words.union(self._male_gendered_words, \
+                self._non_binary_gendered_words, self._trans_gendered_words, self._cis_gendered_words)
 
         for token, metrics in self._cooccurrence_matrix.items():
             # only calculate metrics over 'gender neutral' tokens and for
-            # tokens that have co occurrence counts above the configured cutoff
-            if (token not in self._female_gendered_words) and (
-                token not in self._male_gendered_words) and (
-                token not in self._non_binary_gendered_words) and (
-                token not in self._trans_gendered_words) and (
-                token not in self._cis_gendered_words) and (
-                self._get_cooccurrence_count(metrics) >= self._cutoff):
+            # tokens that have co occurrence counts above the configured cutoff            
+            if (token not in gender_lists and (self._get_cooccurrence_count(metrics) >= self._cutoff)):
                 self._tokens_considered += 1
                 self._bias_scores_ratio[token] = math.log(
                     metrics["male"] / metrics["female"])
@@ -331,7 +330,8 @@ class MetricsCalculation:
                     self._gendered_word_counts["non-binary"] + len(self._cooccurrence_matrix))
                 if self._non_binary_conditional_probs[token] > 0:
                     binary_conditional_token = (metrics["female"] + metrics["male"] - 1) \
-                        / (self._gendered_word_counts["female"] + self._gendered_word_counts["male"] + len(self._cooccurrence_matrix))
+                        / (self._gendered_word_counts["female"] + self._gendered_word_counts["male"] + \
+                            len(self._cooccurrence_matrix))
                     self._non_binary_bias_scores_conditional[token] = \
                         math.log(binary_conditional_token / self._non_binary_conditional_probs[token])
 
@@ -367,7 +367,7 @@ class MetricsCalculation:
                 overall_metrics.avg_non_binary_bias_conditional += self._non_binary_bias_scores_conditional[token]
                 overall_metrics.avg_non_binary_bias_conditional_absolute += \
                     abs(self._non_binary_bias_scores_conditional[token])
-                
+
                 overall_metrics.avg_trans_cis_bias_ratio += self._trans_cis_bias_scores_ratio[token]
                 overall_metrics.avg_trans_cis_bias_ratio_absolute += abs(
                     self._trans_cis_bias_scores_ratio[token])
@@ -414,7 +414,7 @@ class MetricsCalculation:
             max(1, self._gendered_word_counts["female"] + \
                    self._gendered_word_counts["male"] + \
                    self._gendered_word_counts["non-binary"])  # avoid devision by 0
-                   
+    
         overall_metrics.percentage_of_female_gender_definition_words = \
             self._gendered_word_counts["female"] / total_gender_definition_words
         overall_metrics.percentage_of_male_gender_definition_words = \
@@ -427,7 +427,7 @@ class MetricsCalculation:
             max(1, self._gendered_word_counts["trans"] + \
                    self._gendered_word_counts["cis"] + \
                    self._gendered_word_counts["non-binary"])  # avoid devision by 0
-            
+
         overall_metrics.percentage_of_trans_gender_definition_words = \
              (self._gendered_word_counts["trans"] + self._gendered_word_counts["non-binary"]) \
                  / total_trans_cis_definition_words
@@ -466,13 +466,10 @@ class MetricsCalculation:
 
     def _get_word_based_metrics(self):
         word_based_statistics = {}
-        for token, values in self._cooccurrence_matrix.items():
-            if (token not in self._female_gendered_words) and (
-                token not in self._male_gendered_words) and (
-                token not in self._non_binary_gendered_words) and (
-                token not in self._trans_gendered_words) and (
-                token not in self._cis_gendered_words) and (
-                self._get_cooccurrence_count(values) >= self._cutoff):
+        gender_lists = self._female_gendered_words.union(self._male_gendered_words, \
+                self._non_binary_gendered_words, self._trans_gendered_words, self._cis_gendered_words)            
+        for token, values in self._cooccurrence_matrix.items():            
+            if (token not in gender_lists and (self._get_cooccurrence_count(values) >= self._cutoff)):
                 word_based_gender_statistics = WordBasedGenderStatistics()
                 word_based_gender_statistics.frequency = values["count"]
                 word_based_gender_statistics.female_count = values["female"]
