@@ -183,7 +183,7 @@ class MetricsCalculation:
             elif token in self._non_binary_gendered_words:
                 self._update_all_surrounding_words(
                     token_index, "non-binary", sentence_tokens)
-       
+
             if token in self._trans_gendered_words:
                 self._update_all_surrounding_words(
                     token_index, "trans", sentence_tokens)
@@ -307,7 +307,7 @@ class MetricsCalculation:
 
         for token, metrics in self._cooccurrence_matrix.items():
             # only calculate metrics over 'gender neutral' tokens and for
-            # tokens that have co occurrence counts above the configured cutoff            
+            # tokens that have co occurrence counts above the configured cutoff
             if (token not in gender_lists and (self._get_cooccurrence_count(metrics) >= self._cutoff)):
                 self._tokens_considered += 1
                 self._bias_scores_ratio[token] = math.log(
@@ -414,7 +414,7 @@ class MetricsCalculation:
             max(1, self._gendered_word_counts["female"] + \
                    self._gendered_word_counts["male"] + \
                    self._gendered_word_counts["non-binary"])  # avoid devision by 0
-    
+
         overall_metrics.percentage_of_female_gender_definition_words = \
             self._gendered_word_counts["female"] / total_gender_definition_words
         overall_metrics.percentage_of_male_gender_definition_words = \
@@ -467,8 +467,8 @@ class MetricsCalculation:
     def _get_word_based_metrics(self):
         word_based_statistics = {}
         gender_lists = self._female_gendered_words.union(self._male_gendered_words, \
-                self._non_binary_gendered_words, self._trans_gendered_words, self._cis_gendered_words)            
-        for token, values in self._cooccurrence_matrix.items():            
+                self._non_binary_gendered_words, self._trans_gendered_words, self._cis_gendered_words)
+        for token, values in self._cooccurrence_matrix.items():
             if (token not in gender_lists and (self._get_cooccurrence_count(values) >= self._cutoff)):
                 word_based_gender_statistics = WordBasedGenderStatistics()
                 word_based_gender_statistics.frequency = values["count"]
